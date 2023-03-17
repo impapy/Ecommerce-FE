@@ -1,0 +1,156 @@
+<div class="container-fluid">
+  <div>
+    <img src="../../../assets/amazonlogo.gif" />
+    <h1>{{"Select a shipping address"|translate}}</h1>
+
+    <p><strong>{{"Add a new address"|translate}}</strong></p>
+  </div>
+
+  <div class="row">
+    <div class="col-7">
+      <form class="row g-3 w-75 me-auto" [formGroup]="shippingForm" (ngSubmit)="addAddress()">
+        <div class="">  
+    
+          <div class="w-100 form-group">
+            <label for="Country" class="form-label fs-5 m-1"> <strong>{{"Country"|translate}}</strong></label>
+            <select name="address-ui-widgets-enterAddressStateOrRegion" autocomplete="off" id="Country" tabindex="-1"
+              class=" w-100 rounded-3 form-select" formControlName="countryName" (change)="onChangeCountry($event)">
+              <option class="a-size-base" value="">{{"Select Country"|translate}}</option>
+              <option *ngFor="let ctry of Countries" value="{{ctry.name}}{{ctry.arName}}">{{ctry.name}}{{ctry.arName}}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="shippingForm.controls['countryName'].invalid && (shippingForm.controls['countryName'].dirty || shippingForm.controls['countryName'].touched)" class="">
+    
+            <div *ngIf="shippingForm.controls['countryName'].errors" class=" text-warning">
+    
+            Please must be select your country
+    
+          </div>
+    
+        </div>
+        </div>
+    
+        <div class="col-12">
+          <label for="validationCustom03" class="form-label fs-5 m-1"><strong>{{'Full Name'|translate}}</strong> </label>
+          <input type="text" class="form-control" id="validationCustom03" required formControlName="fullName">
+          <div *ngIf="shippingForm.controls['fullName'].invalid && (shippingForm.controls['fullName'].dirty || shippingForm.controls['fullName'].touched)" class="">
+    
+            <div *ngIf="shippingForm.controls['fullName'].errors" class=" text-warning">
+    
+            Please must be enter your full name
+    
+          </div>
+    
+        </div>
+          <label for="phone" class="form-label fs-5 m-1"><strong>{{"Phone"|translate}}</strong> </label>
+          <input type="text" class="form-control " id="phone" required formControlName="phone">
+          <div *ngIf="shippingForm.controls['phone'].invalid && (shippingForm.controls['phone'].dirty || shippingForm.controls['phone'].touched)" class="">
+    
+            <div *ngIf="shippingForm.controls['phone'].errors" class=" text-warning">
+    
+            Please must be enter your correct number
+    
+          </div>
+    
+        </div>
+          <div class="state d-block">
+            <div class="col-12 ">
+              <div class="">
+                <div>
+                  <label for="address" class="form-label fs-5 m-1">
+                    <span class="a-size-base "><strong>{{"Governate"|translate}}</strong> </span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <span class="a-dropdown-container ">
+                  <select name="address-ui-widgets-enterAddressStateOrRegion" autocomplete="off"
+                    id="address-ui-widgets-enterAddressStateOrRegion-dropdown-nativeId" tabindex="-1"
+                    class="w-100 rounded-3 form-select " formControlName="governate" (change)="onChangeGov($event)">
+                    <option class="a-size-base" value="">{{"Select Governate"|translate}}</option>
+                    <option *ngFor="let gov of Govs" value="{{gov.name}}{{gov.arName}}">{{gov.name}}{{gov.arName}}
+                    </option>
+                  </select>
+                </span>
+              </div>
+              <div *ngIf="shippingForm.controls['governate'].invalid && (shippingForm.controls['governate'].dirty || shippingForm.controls['governate'].touched)" class="">
+    
+                <div *ngIf="shippingForm.controls['governate'].errors" class=" text-warning">
+    
+                Please must be select your governate
+    
+              </div>
+    
+            </div>
+            </div>
+            <div class="col-12">
+              <div class="">
+                <div>
+                  <label for="address" class="form-label fs-5 m-1">
+                    <span class="a-size-base "><strong>{{"City"|translate}}</strong> </span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <span class="a-dropdown-container ">
+                  <select name="address-ui-widgets-enterAddressStateOrRegion" autocomplete="off"
+                    id="address-ui-widgets-enterAddressStateOrRegion-dropdown-nativeId" tabindex="-1"
+                    class="w-100 rounded-3 form-select" formControlName="city">
+                    <option class="a-size-base" value="">{{"Select City"|translate}}</option>
+                    <option *ngFor="let city of Cities" value="{{city.name}}{{city.arName}}">{{city.name}}{{city.arName}}
+                    </option>
+                  </select>
+                </span>
+              </div>
+              <div *ngIf="shippingForm.controls['city'].invalid && (shippingForm.controls['city'].dirty || shippingForm.controls['city'].touched)" class="">
+    
+                <div *ngIf="shippingForm.controls['city'].errors" class=" text-warning">
+    
+                Please must be select your city
+    
+              </div>
+    
+            </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <p><a href="#">Add preferences, notes, access codes and more</a></p>
+            <button type="submit" class="btn btn-warning w-100"  [disabled]="!shippingForm.valid">Use this address</button>
+          </div>
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                {{"Make this my default address"|translate}}
+              </label>
+              <h3></h3>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-4 mt-5" *ngIf="defaultAdr">
+      <div class="card address-card p-2 text-center">
+        <div class="address">
+            <p class="fw-bold"> {{defaultAdr.userId.name}}</p>
+            <p> {{defaultAdr.city}} </p>
+            <p> {{defaultAdr.governate}} </p>
+            <p> {{defaultAdr.country}}</p>
+            <p class="mb-5 ">{{"Phone Number :"|translate}} {{defaultAdr.userId.phone}}</p>
+            <a  class="text-decoration-none " (click)='useDefault()'>{{"Use this address"|translate}}</a> 
+        </div>
+    </div>
+    </div>
+
+  </div>
+  
+</div>
+<div class="mt-5 text-center">
+  <div class="row mx-auto">
+    <div class="footer">
+      <p><a href="#">{{"Conditions of Use | Privacy Notice"|translate}}</a></p>
+      <p>{{"© 1996-2021, Amazon.com, Inc."|translate}}</p>
+    </div>
+  </div>
+</div>

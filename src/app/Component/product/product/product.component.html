@@ -1,0 +1,903 @@
+<!-- ===================cart in 65 to 107============================= -->
+<div class="container-fluid p-md-2">
+  <div class="col-12">
+    <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/Home']" routerLinkActive="router-link-active"  class="link">{{ "Home" | translate }}</a> &nbsp;
+          <i
+            *ngIf="currentLang"
+            [ngClass]="{
+              'bi bi-chevron-right': currentLang == 'en',
+              'bi bi-chevron-left': currentLang == 'ar'
+            }"
+          ></i>
+        </li>
+
+        <li class="breadcrumb-item" aria-current="page">
+          <a
+            [routerLink]="['/Category/cate/' + product.category]"
+            routerLinkActive="router-link-active"
+            class="link"
+          >
+            <span *ngIf="currentLang == 'en'">{{ product?.category }}</span>
+            <span *ngIf="currentLang == 'ar'">{{ product?.arcategory }}</span>
+          </a>
+          &nbsp;
+          <i
+            *ngIf="currentLang"
+            [ngClass]="{
+              'bi bi-chevron-right': currentLang == 'en',
+              'bi bi-chevron-left': currentLang == 'ar'
+            }"
+          ></i>
+        </li>
+        <li class="breadcrumb-item" aria-current="page">
+          <a
+            [routerLink]="['/Product/products-subcategory/' + product.subcategory
+            ]"
+            routerLinkActive="router-link-active"
+            class="link"
+          >
+            <span *ngIf="currentLang == 'en'">{{ product?.subcategory }}</span>
+            <span *ngIf="currentLang == 'ar'">
+              {{ product?.arsubcategory }}</span
+            >
+          </a>
+          &nbsp;
+          <i
+            *ngIf="currentLang"
+            [ngClass]="{
+              'bi bi-chevron-right': currentLang == 'en',
+              'bi bi-chevron-left': currentLang == 'ar'
+            }"
+          ></i>
+        </li>
+        <li class="breadcrumb-item" aria-current="page">
+          {{ product.brand }} &nbsp;
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row g-md-2 position-relative">
+        <div
+          class="col-1 d-none d-md-flex align-items-center"
+          style="max-height: 500px"
+        >
+          <div class="model-color-img">
+            <ul class="arrimg" *ngFor="let item of product.imagePath">
+              <li class="img">
+                <img
+                  [src]="imgURL + item"
+                  style="max-width: 60px; max-height: 60px !important"
+                  alt=""
+                  (mouseover)="clickChangeImg(item)"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="col-md-4 col-12 d-flex container-md order-0 p-md-5"
+          style="height: 600px"
+        >
+          <img
+            [src]="imgSrc"
+            class=" m-auto"
+            alt="image to product"
+            style="max-width: 100%; max-height:100%"
+          />
+        </div>
+
+        <!-- ========================================cart============================================= -->
+
+        <!-- ===================================cart========================================================================== -->
+        <div
+          class="
+            col-md-3 col-12
+            p-md-4
+            mb-md-5
+            pb-md-5
+            border border-2
+            order-2
+            ms-md-auto
+          "
+          style="height: fit-content"
+        >
+          <p class="fs-6">
+            <span class="mb-md-3 text-primary"> {{ "Price:" | translate }}</span
+            ><span class="mb-md-3 price text-danger">
+              <!-- <span class="mb-md-3 change-coil"> {{'EGP'|translate}}</span> -->
+              <span class="mb-md-3 price-money">{{ product.price | currency}}</span>
+            </span>
+          </p>
+          <div class="mb-md-3 fw-bold text-center">
+            <span *ngIf="currentLang == 'en'">{{ product.name }}</span>
+            <span *ngIf="currentLang == 'ar'"> {{ product.arname }}</span>
+
+            <!-- <a href="#" class=" mb-md-3 link">Learn more</a> -->
+
+            <p>
+              <a href="#" class="mb-md-3 link"
+                >{{ " delivery in : " | translate }} </a
+              >{{ today | translate }}
+              <a href="" class="mb-md-3 link"> {{ "Details" | translate }}</a>
+            </p>
+            <p class="mb-md-3 text-danger fs-5">
+              {{ "Usually ships within 2 to 3 days." | translate }}
+            </p>
+            <!-- <div class="mb-md-3 mb-3 row">
+                            <label for="Qty" class="mb-md-3 form-label col-2">Qty</label>
+                            <select class="mb-md-3 form-select w-50 rounded-pill col-4 ps-5 p-2" name="Qty" id="Qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div> -->
+
+            <br />
+            <!-- ================================================================button   Add to Cart================================================== -->
+
+            <p>
+              <button
+                (click)="onAddCard()"
+                class="mb-md-3 btn btn-warning rounded-pill mb-3 p-3 w-100"
+                [disabled]="product.countInStock==0"
+              >
+                {{ "Add to Cart" | translate }}
+              </button>
+              <span class="badge rounded-pill bg-secondary p-2" *ngIf="product.countInStock==0">Out Of Stock</span>
+            </p>
+            <!-- ================================================================button   Buy NoW ================================================== -->
+            <!-- <p>
+                            <a href="#" class="mb-md-3 btn btn-light p-3 w-100 rounded-pill"
+                                style="background-color: darkorange">Buy
+                                Now</a>
+                        </p> -->
+            <p>
+              {{ "Sold by" | translate }}
+              <a href="" class="mb-md-3 link">{{ product.sellerId?.name }} </a>
+              {{ "and Delivered by
+              Amazon." | translate }}
+            </p>
+            <!-- ============================================== button   Add to List ================================================== -->
+            <hr />
+            <p>
+              <button
+                type="button"
+                class="mb-md-3 m-auto w-100 link btn-md btn-light d-md-none"
+                data-bs-toggle="modal"
+                data-bs-target="#Add_ToList"
+                data-bs-whatever="Shopping List"
+              >
+                {{ "Add to List" | translate }}
+              </button>
+            </p>
+            <p>
+              <button
+                type="button"
+                class="
+                  m-auto
+                  w-100
+                  mb-md-2
+                  mt-md-3
+                  p-2
+                  btn btn-outline-secondary
+                  d-none d-md-block
+                "
+                data-bs-toggle="modal"
+                data-bs-target="#Add_ToList"
+                data-bs-whatever="Shopping List"
+              >
+                {{ "Add to List" | translate }}
+              </button>
+            </p>
+          </div>
+        </div>
+        <!-- =========================================pop ================================== -->
+
+        <div
+          class="modal fade m-auto vw-100 justify-content-center"
+          id="Add_ToList"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog p-5 m-auto">
+            <div class="modal-content">
+              <div class="modal-header ps-2 pe-2 pb-3 bg-light">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  {{ "add" | translate }}
+                </h5>
+                <button
+                  type="button "
+                  class="btn-close mt-0 me-2"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body m-3">
+                <form [formGroup]="wishListForm" (ngSubmit)="createWishList()">
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label mb-3"
+                      >{{ "List name" | translate }}
+                    </label>
+                    <!-- <input type="text" class="form-control rounded-3 p-2" id="recipient-name" #list /> -->
+                    <div class="w-100 form-group p-3">
+                      <label for="Country" class="form-label fs-5 m-1 mb-3">
+                        <strong>{{ "Lists" | translate }}</strong></label
+                      >
+                      <select
+                        name="address-ui-widgets-enterAddressStateOrRegion"
+                        autocomplete="off"
+                        id="Country"
+                        tabindex="-1"
+                        class="w-100 rounded-3 form-select p-1"
+                        formControlName="listName"
+                        (change)="onChangeList($event)"
+                      >
+                        <option class="a-size-base" value="">
+                          {{ "Select List" | translate }}
+                        </option>
+                        <option
+                          *ngFor="let list of Wishlist"
+                          value="{{ list.name }}"
+                        >
+                          {{ list.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="ps-3 pe-3 p-2 m-3 rounded-3 btn btn-light"
+                      data-bs-dismiss="modal"
+                    >
+                      {{ "Cancel" | translate }}
+                    </button>
+                    <button
+                      type="submit"
+                      class="ps-3 pe-3 p-2 m-3 rounded-3 btn btn-warning"
+                      data-bs-dismiss="modal"
+                    >
+                      {{ "add" | translate }}
+                    </button>
+                  </div>
+                </form>
+                <span>{{
+                  "Use lists to save items for later. All lists are private unless you share them with
+                  others."
+                    | translate
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================end cart =======================================================================================-->
+
+        <div class="col-md-4 col-12 p-4 ps-md-0 order-sm-1 me-md-0 ms-md-auto">
+          <div class="col">
+            <a href="#" class="link-primary link">
+              {{ "Brand" | translate }}
+              <span class="link-brand"> {{ product.brand }} </span>
+            </a>
+            <h5 class="mt-0">
+              <span *ngIf="currentLang == 'en'">{{ product.name }}</span>
+              <span *ngIf="currentLang == 'ar'"> {{ product.arname }}</span>
+            </h5>
+          </div>
+
+          <hr class="d-md-none" />
+          <div class="col-12 mb-md-0 p-md-4 order-1">
+            <div class="row">
+              <div class="col-3 m-2">
+                <a class="col link" href="#">
+                  <div class="col">
+                    <img
+                      width="50px"
+                      src="https://images-na.ssl-images-amazon.com/images/G/42/A2I-Convert/mobile/IconFarm/icon-amazon-delivered._CB403797073_.png"
+                      alt="Delivered by Amazon"
+                      srcset=""
+                    />
+                  </div>
+                  <div class="col">{{ "Delivered by Amazon" | translate }}</div>
+                </a>
+              </div>
+              <div class="col-3 m-2">
+                <a class="col link" href="#">
+                  <div class="col">
+                    <img
+                      width="50px"
+                      src="https://images-na.ssl-images-amazon.com/images/G/42/A2I-Convert/mobile/IconFarm/icon-amazon-delivered._CB403797073_.png"
+                      alt="Secure transaction"
+                      srcset=""
+                    />
+                  </div>
+                  <div class="col">{{ "Secure transaction" | translate }}</div>
+                </a>
+              </div>
+              <div class="col"></div>
+              <hr />
+            </div>
+          </div>
+          <!-- Details -->
+          <div class="col-12 mb-md-0 p-md-4 order-1">
+            <p class="fs-6">
+              <span class="mb-md-3 text-primary">
+                {{ "Price:" | translate }}</span
+              >
+              <span class="mb-md-3 price text-danger">
+                <span class="mb-md-3 price-money">{{ product.price | currency }}</span>
+              </span>
+            </p>
+            <p class="fw-bold"*ngIf="product.category == 'Electronics'||'Fashion' " [hidden]="product.category == 'Grocery'"  >{{ "Details" | translate }}</p>
+
+            <div class="col Details" *ngIf="product.category == 'Fashion'">
+              <div class="model-color" *ngIf="product.ModelId">
+                <div class="mb-3">
+                  <label for="" class="form-label fw-bold d-inline-flex">
+                    {{ "color :" | translate }}
+                  </label>
+                  <select
+                    class="form-control d-inline-flex w-75 ms-auto"
+                    name=""
+                    id=""
+                  >
+                    <option disabled selected>Select Color</option>
+                    <option *ngFor="let item of product.ModelId.model">
+                      {{ item.colormodel }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="" class="form-label fw-bold d-inline-flex">
+                    {{ "Size :" | translate }}
+                  </label>
+                  <select
+                    class="form-control d-inline-flex w-75 ms-auto"
+                    name=""
+                    id=""
+                    (change)="changePrice($event)"
+                  >
+                    <option disabled selected>Select Size</option>
+                    <option
+                      *ngFor="let item of product.ModelId.model; index as i"
+                      [value]="item.sizePrice"
+                    >
+                      {{ item.size }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+<!-- for Electronics    -->
+            <div class="col Details" *ngIf="product.category == 'Electronics'">
+              <div class="row">
+                <div class="col-4">{{ "Brand" | translate }}</div>
+
+                <div class="col-4">{{ product.ModelId.model[0].brandm }}</div>
+                <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col-4">{{ "Color" | translate }}</div>
+
+                <div class="col-4">{{ product.ModelId.model[0].color }}</div>
+
+                <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col-4">{{ "Operating System" | translate }}</div>
+
+                <div class="col-4">{{ product.ModelId.model[0].os }}</div>
+                <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col-4">{{ "Memory Storage" | translate }}</div>
+
+                <div class="col-4">{{ product.ModelId.model[0].memoryStrage }}</div>
+
+                <div class="col"></div>
+              </div>
+            </div>
+          </div>
+          <hr class="d-md-none" />
+          <!-- ul li list  -->
+          <div class="col-12 mb-md-0 p-md-4 d-none d-md-block order-1">
+            <div class="col-12 d-block">
+              <h5 class="fs-5">{{ "About this item" | translate }}</h5>
+            </div>
+            <br />
+
+            <div class="col-12 d-none d-md-block">
+              <ul
+                class="col d-none d-md-block"
+                *ngFor="let item of arr ; index as i"
+              >
+                <li *ngIf="i <= toggleItemVal">
+
+                  {{ item.slice(0,100) }}
+                </li>
+              </ul>
+
+              <button class="btn link" (click)="toggleItem()">
+                {{ "See more" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <!----------------------------- image---------------------------------------------------->
+  <div class="container-md d-md-flex justify-content-center m-auto">
+    <div class="d-md-block text-center">
+      <div class="container-fluidd-flex justify-content-center">
+        <h2 class="fs-4 text-danger text-opacity-75 pt-md-4">
+          {{ "Product Image Gallery" | translate }}
+        </h2>
+
+        <!-- ==============================Product Image Gallery========================================= -->
+        <div
+          class="container d-flex justify-content-center m-auto mb-2"
+          *ngFor="let item of product.imagePath"
+        >
+          <img
+            [src]="imgURL + item"
+            class="w-md-50 w-75 ms-md-5 ps-md-5 m-md-4 m-2"
+            alt="Product Image Gallery"
+            style="max-width: fit-content; max-height: 700px !important"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <!-- t--------------a------------tabla ---------------------------------->
+  <div class="col row  m-auto w-100">
+    <div class="col-11 col-md-7 m-2 m-md-3 ms-md-5">
+      <h4 class="fs-5 ms-md-2 m-md-3 fw-bold text-danger">
+        {{ "Product information" | translate }}
+      </h4>
+      <br />
+      <h4 class="fs-4 ms-md-2 m-md-3" *ngIf="product.category == 'Electronics'">
+        {{ "Technical Details" | translate }}
+      </h4>
+
+      <h4 class="fs-4 ms-md-2 m-md-3" *ngIf="product.category != 'Electronics'">
+        {{ "Details" | translate }}
+      </h4>
+
+      <div class="col">
+        <div class="col" *ngIf="product.category != 'Electronics'">
+          <ul
+            class="col d-none d-md-block"
+            *ngFor="let item of arr; index as i"
+          >
+            <li>
+              {{ item }}
+            </li>
+          </ul>
+
+          <button class="btn link" hidden (click)="toggleItem()">
+            {{ "See more" | translate }}
+          </button>
+        </div>
+<div class="container" *ngIf="product.category == 'Electronics'">
+<div class="container-fluid" *ngIf="product.ModelId.model">
+        <div class="table-responsive" *ngFor="let item of product.ModelId.model">
+
+
+          <table
+            class="table align-middle"
+
+          >
+            <tr class="border-2">
+              <td class="bg-black bg-opacity-10 Key p-2 ps-3">
+                {{ "Brand" | translate }}
+              </td>
+              <td class="value p-2 ps-3">{{ item.brandm }}</td>
+            </tr>
+            <tr class="border-2">
+              <td class="bg-black bg-opacity-10 key p-2 ps-3">
+                {{ "Color" | translate }}
+              </td>
+              <td class="value p-2 ps-3">{{ item.color }}</td>
+            </tr>
+            <tr class="border-2">
+              <td class="bg-black bg-opacity-10 key p-2 ps-3">
+                {{ "Operating System" | translate }}
+              </td>
+              <td class="value p-2 ps-3">{{ item.os }}</td>
+            </tr>
+            <tr class="border-2">
+              <td class="bg-black bg-opacity-10 key p-2 ps-3">
+                {{ "Ram" | translate }}
+              </td>
+              <td class="value p-2 ps-3">{{ item.ram }}</td>
+            </tr>
+            <tr class="border-2">
+              <td class="bg-black bg-opacity-10 key p-2 ps-3">
+                {{ "Memory Storage" | translate }}
+              </td>
+              <td class="value p-2 ps-3">
+                {{ item.memoryStrage }}
+              </td>
+            </tr>
+            <tr class="border-2">
+              <td class="bg-black bg-opacity-10 key p-2 ps-3">
+                {{ "Item Weight" | translate }}
+              </td>
+              <td class="value p-2 ps-3">{{ item.itemWeight }}</td>
+            </tr>
+            <tr class="border-2">
+              <td class="bg-black bg-opacity-10 key p-2 ps-3">
+                {{ "Date First Available" | translate }}
+              </td>
+              <td class="value p-2 ps-3">
+                {{ item.dateFirstAvailable }}
+              </td>
+            </tr>
+          </table>
+        </div></div></div>
+      </div>
+    </div>
+
+    <div class=" col">
+
+
+
+    </div>
+
+
+  </div>
+  <hr />
+  <div class="container-fluid">
+    <!------------------------------------------------ here reviews-------------------------- -->
+    <div class="row gap-3">
+      <!-- ==============================================Reviews  هنا الجزء الايسر من ======================================================== -->
+      <div class="col-12 col-md-4 col-lg-4 m-2 m-md-3 ms-md-5 mt-md-5 pt-md-5">
+        <h2 class="fs-3 mb-4">{{ "Customer reviews" | translate }}</h2>
+
+        <p class="fs-5">
+          <!-- <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating> -->
+          {{ product.ratings.toFixed(1) }} {{ "out of 5" | translate }}
+          <!-- ==============================================Reviews  من star   الجزء الايسر  ======================================================== -->
+
+          <span class="col p-3">
+            <span class="fs-5"> {{ "Rating :" | translate }} </span>
+            <i
+              *ngIf="product.ratings"
+              [ngClass]="{
+                'star-rating bi bi-star': product.ratings < 1,
+                'star-rating bi bi-star-fill': product.ratings >= 1
+              }"
+              aria-hidden="true"
+            ></i>
+            <i
+              *ngIf="product.ratings"
+              [ngClass]="{
+                'star-rating bi bi-star': product.ratings < 2,
+                'star-rating bi bi-star-fill': product.ratings >= 2
+              }"
+              aria-hidden="true"
+            ></i>
+            <i
+              *ngIf="product.ratings"
+              [ngClass]="{
+                'star-rating bi bi-star': product.ratings < 3,
+                'star-rating bi bi-star-fill': product.ratings >= 3
+              }"
+              aria-hidden="true"
+            ></i>
+            <i
+              *ngIf="product.ratings"
+              [ngClass]="{
+                'star-rating bi bi-star': product.ratings < 4,
+                'star-rating bi bi-star-fill': product.ratings >= 4
+              }"
+              aria-hidden="true"
+            ></i>
+            <i
+              *ngIf="product.ratings"
+              [ngClass]="{
+                'star-rating bi bi-star': product.ratings < 5,
+                'star-rating bi bi-star-fill': product.ratings >= 5
+              }"
+              aria-hidden="true"
+            ></i>
+          </span>
+        </p>
+        <!-- =======================reveiw =======عدد الناس اللي عملوا   ====Reviews  =======  الجزء الايسر  ======================================================== -->
+
+        <p class="fs-6">
+          {{ product.numReviews }} {{ "global ratings" | translate }}
+        </p>
+        <!-- ======================Bar  ====Reviews  =======  الجزء الايسر  ======================================================== -->
+
+        <div class="col m-2">
+          <a href="#" class="link">
+            <div class="row">
+              <div class="col">5 {{ "star" | translate }}</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-warning"
+                    role="progressbar"
+                    [ngStyle]="{ width: Str5 + '%' }"
+                    aria-valuenow="Str5"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col">{{ Str5 }}%</div>
+            </div>
+          </a>
+        </div>
+        <div class="col m-2">
+          <a href="#" class="link">
+            <div class="row">
+              <div class="col">4 {{ "star" | translate }}</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-warning"
+                    role="progressbar"
+                    [ngStyle]="{ width: Str4 + '%' }"
+                    aria-valuenow="9"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col">{{ Str4 }}%</div>
+            </div>
+          </a>
+        </div>
+        <div class="col m-2">
+          <a href="#" class="link">
+            <div class="row">
+              <div class="col">3 {{ "star" | translate }}</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-warning"
+                    role="progressbar"
+                    [ngStyle]="{ width: Str3 + '%' }"
+                    aria-valuenow="2"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col">{{ Str3 }}%</div>
+            </div>
+          </a>
+        </div>
+        <div class="col m-2">
+          <a href="#" class="link">
+            <div class="row">
+              <div class="col">2 {{ "star" | translate }}</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-warning"
+                    role="progressbar"
+                    [ngStyle]="{ width: Str2 + '%' }"
+                    aria-valuenow="75"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col">{{ Str2 }}%</div>
+            </div>
+          </a>
+        </div>
+        <div class="col m-2">
+          <a href="#" class="link">
+            <div class="row">
+              <div class="col">1 {{ "star" | translate }}</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-warning"
+                    role="progressbar"
+                    [ngStyle]="{ width: Str1 + '%' }"
+                    aria-valuenow="75"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col">{{ Str1 }}%</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- =======================reveiw =======عدد الناس اللي عملوا   ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+      <div class="col-12 col-md-6 col-lg-6 m-2 m-md-3 ms-md-5 mt-md-5 pt-md-5">
+        <h4 class="fw-bolder fs-5">
+          {{ product.numReviews }} {{ "customer reviews" | translate }}
+        </h4>
+        <!-- =======================reveiw ======= الناس اللي عملوا   ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+        <div class="container-fluid">
+          <div class="col mt-2 mb-2" *ngFor="let item of product.reviews">
+            <div class="col mt-5 mb-2">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/S/amazon-avatars-global/default._CR0,0,1024,1024_SX48_.png"
+                class="rounded-circle"
+                alt=""
+                srcset=""
+              />
+
+              <!-- =======================reveiw ====name===اسم== الناس اللي عملوا   ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+              {{ item.name }}
+            </div>
+            <div class="col">
+              <span class="col p-3">
+                <!-- =======================reveiw =======Rating=== الناس اللي عملوا   ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+                <span class="fs-5"> {{ "Rating :" | translate }} </span>
+                <i
+                  *ngIf="item.rating"
+                  [ngClass]="{
+                    'star-rating bi bi-star': item.rating < 1,
+                    'star-rating bi bi-star-fill': item.rating >= 1
+                  }"
+                  aria-hidden="true"
+                ></i>
+                <i
+                  *ngIf="item.rating"
+                  [ngClass]="{
+                    'star-rating bi bi-star': item.rating < 2,
+                    'star-rating bi bi-star-fill': item.rating >= 2
+                  }"
+                  aria-hidden="true"
+                ></i>
+                <i
+                  *ngIf="item.rating"
+                  [ngClass]="{
+                    'star-rating bi bi-star': item.rating < 3,
+                    'star-rating bi bi-star-fill': item.rating >= 3
+                  }"
+                  aria-hidden="true"
+                ></i>
+                <i
+                  *ngIf="item.rating"
+                  [ngClass]="{
+                    'star-rating bi bi-star': item.rating < 4,
+                    'star-rating bi bi-star-fill': item.rating >= 4
+                  }"
+                  aria-hidden="true"
+                ></i>
+                <i
+                  *ngIf="item.rating"
+                  [ngClass]="{
+                    'star-rating bi bi-star': item.rating < 5,
+                    'star-rating bi bi-star-fill': item.rating >= 5
+                  }"
+                  aria-hidden="true"
+                ></i>
+              </span>
+            </div>
+            <div class="col">
+              <!-- =======================reveiw =======commemt=== الناس اللي عملوا   ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+              <p class="fs-6">{{ item.comment }}</p>
+            </div>
+            <span
+              class="d-flex delete-review text-end justify-content-end"
+              *ngIf="item.userId == userID"
+            >
+              <button class="ps-4 pe-4 p-2 btn btn-link" (click)="delete(item)">
+                {{ "Delete" | translate }}
+              </button>
+            </span>
+          </div>
+        </div>
+        <!-- =======================reveiw =======Form to comment   ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+        <div class="container">
+          <div class="from todolist border-1 p-5 border">
+            <div class="row justify-content-between w-100">
+              <label for="exampleFormControlTextarea1" class="col p-3 fs-5">{{
+                "Comment" | translate
+              }}</label>
+              <span class="col p-3 text-end">
+                <!-- =======================reveiw =======enter Rating =====من خلال الضغط علي النجمه   ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+                <span class="fs-5"> {{ "Rating :" | translate }} </span
+                ><span class="fs-5"> {{ Rating }}</span>
+                <form>
+                  <fieldset>
+                    <span class="star-cb-group">
+                      <input
+                        type="radio"
+                        id="rating-5"
+                        name="rating"
+                        #val5
+                        (click)="ratingToVal(5)"
+                        value="5"
+                      /><label for="rating-5">5</label>
+                      <input
+                        type="radio"
+                        id="rating-4"
+                        name="rating"
+                        #val4
+                        (click)="ratingToVal(4)"
+                        value="4"
+                        checked="checked"
+                      /><label for="rating-4">4</label>
+                      <input
+                        type="radio"
+                        id="rating-3"
+                        name="rating"
+                        #val3
+                        (click)="ratingToVal(3)"
+                        value="3"
+                      /><label for="rating-3">3</label>
+                      <input
+                        type="radio"
+                        id="rating-2"
+                        name="rating"
+                        #val2
+                        (click)="ratingToVal(2)"
+                        value="2"
+                      /><label for="rating-2">2</label>
+                      <input
+                        type="radio"
+                        id="rating-1"
+                        name="rating"
+                        #val1
+                        (click)="ratingToVal(1)"
+                        value="1"
+                      /><label for="rating-1">1</label>
+                    </span>
+                  </fieldset>
+                </form>
+              </span>
+            </div>
+            <!-- =======================reveiw =======enter comment =====من خلال النص    ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="2"
+              #commit
+            ></textarea>
+            <div class="form-group text-end">
+              <!-- =======================reveiw ======= ===button Cancel    ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+              <button
+                class="btn btn-light ps-4 pe-4 p-2 m-2"
+                type="reset"
+                (click)="RemoveReview(commit)"
+              >
+                {{ "Cancel" | translate }}
+              </button>
+              <!-- =======================reveiw ======= ===button Save   ====Reviews  =======  الجزء الايمن  ======================================================== -->
+
+              <button
+                class="btn btn-primary ps-4 pe-4 p-2 m-2"
+                type="submit"
+                (click)="AddReview(commit.value)"
+              >
+                {{ "Save" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

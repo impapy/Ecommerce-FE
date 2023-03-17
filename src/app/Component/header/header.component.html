@@ -1,0 +1,477 @@
+<header class="container-fluid  m-0 p-0" *ngIf="router.url !== '/User/login' && router.url !== '/User/signup'">
+  <nav class="navbar  navbar-dark navbar-expand-md header-top  m-0 p-0 px-md-2">
+    <div class="row  m-0 p-0 align-items-center">
+      <div class="col-4 col-md-1 col-lg-1 text-start d-flex align-items-center nav-up">
+        <button class=" navbar-toggler -btn  p-0  border-0" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#list-in-logo" aria-controls="list-in-logo">
+          <span class=" navbar-toggler-icon"></span>
+
+          <!--      -------------------------start  offcanvas for logo Amazon in screen < md ---------------------------------->
+          <div class=" offcanvas offcanvas-start d-md-none" tabindex="-1" id="list-in-logo"
+            aria-labelledby="offcanvasNavbarLabel">
+            <div class=" offcanvas-header bg-secondary bg-gradient  d-flex row">
+              <h6 class="col-6 offcanvas-title text-white fs-6 fw-normal  " id="offcanvasNavbarLabel">
+                {{userName.slice(0,7) || ''}} {{'Account'|translate}}
+                &nbsp;<i class="bi bi-person-fill"></i> </h6>
+              <button type="button" class="col-6  btn-close-white btn-close  " data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+              <h3 class="col-6 offcanvas-title  text-white fs-3 fw-bold   d-block" id="offcanvasNavbarLabel"> {{"Browse Amazon"|translate}} </h3>
+            </div>
+            <div class=" offcanvas-body p-5 ">
+
+
+              <div *ngIf="currentLang == 'en'">
+                <div class="text-start " *ngFor="let cate of categories">
+                  <a class="btn p-2 fw-bold  d-inline-flex  text-start align-items-center rounded border-0" type="button"
+                    data-bs-toggle="  ----   " data-bs-target="#collapseExample" aria-expanded="true"
+                    aria-controls="collapseExample" [routerLink]="['/Category/cate/', cate.name]"
+                    (click)="subCate(cate.name)">
+                    {{cate.name}}
+                  </a>
+                </div>
+                <div class="text-start " *ngFor="let sub of subCategories">
+                  <a class="btn p-2 d-inline-flex align-items-center rounded border-0 "
+                    [routerLink]="[ '/Product/products-subcategory/', sub.name] ">
+                    {{sub.name}}
+                  </a>
+                </div>
+              </div>
+              <div *ngIf="currentLang == 'ar'">
+                <div class="text-start " *ngFor="let cate of categories">
+                  <a class="btn p-2 fw-bold  d-inline-flex  text-start align-items-center rounded border-0" type="button"
+                    data-bs-toggle="  ----   " data-bs-target="#collapseExample" aria-expanded="true"
+                    aria-controls="collapseExample" [routerLink]="['/Category/cate/', cate.arName]"
+                    (click)="subCate(cate.arName)">{{cate.arName}}
+                  </a>
+                </div>
+                <div class="text-start " *ngFor="let sub of subCategories">
+                  <a class="btn p-2 d-inline-flex align-items-center rounded border-0 "
+                    [routerLink]="[ '/Product/products-subcategory/', sub.arName] ">
+                    {{sub.arName}}
+                  </a>
+                </div>
+              </div>
+
+              <div class=" dropdown  text-black col  flag-nav-down">
+                <a class=" btn dropdown-toggle text-black mt-2" href="#" role="button" id="dropdown09" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <span class=" flag-icon flag-icon-us text-capitalize"> {{currentLang}}</span> &nbsp;
+                  <img [src]="'./../../../assets/'+currentLang+'.png'" alt="lang" width="30px" class="rounded-3 " srcset=""> </a>
+                  <div class=" dropdown-menu w-auto text-center" aria-labelledby="dropdown09">
+                    <button (click)="changeCurrentLang('en')" class=" dropdown-item  text-center mx-auto w-100"><img [src]="'./../../../assets/en.png'" class="rounded-3 "alt="lang" width="30px" srcset="">English</button>
+                    <button (click)="changeCurrentLang('ar')" class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/ar.png'" class="rounded-3 " alt="lang" width="30px" srcset=""> Arabic</button>
+                    <button *ngIf="PriceLang=='USD'" (click)="changePriceLang('EGP')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">EGP</button>
+                    <button *ngIf="PriceLang=='EGP'" (click)="changePriceLang('USD')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">USD</button>
+
+                  </div>
+              </div>
+
+
+
+            </div>
+          </div>
+          <!--      -----------------------the end offcanvas logo Amazon in screen < md  ---------------------------------->
+        </button>
+        <a class=" navbar-brand  " routerLink="/Home"  routerLinkActive="router-link-active" >
+          <!---------------------------- logo amazon --------------------------->
+          <img class=" img-fluid rounded float-start  " src="../../../assets/Amazon Logo.png" alt="logo Amazon"
+            width="100%">
+        </a>
+      </div>
+
+      <div class="col mx-md-1 nav-up" style="max-height:auto;min-width:11%;">
+        <div class="d-none d-md-flex fs-6">
+          <a href="#" class="text-white fs-6 btn d-inline ">
+            <span class="d-inline-block  "> <span class="d-inline">{{'Deliver'|translate}}
+                {{userName.slice(0,7)}} </span>
+                 <span class="d-block ">
+                <i class="bi bi-geo-alt "></i> &nbsp; {{Igovernate}} </span></span>
+          </a>
+        </div>
+      </div>
+      <!--------------------------------------------------------- Account ------------------->
+      <div class="col-4 d-md-none text-end align-items-center nav-up">
+        <button class=" navbar-toggler -btn  border-0 p-0 m-0" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbarAccount" aria-controls="offcanvasNavbarAccount">
+          <p class="fs-6 d-inline"> {{userName.slice(0,7)}} </p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-chevron-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <i class="bi bi-person"></i>
+        </button>
+      </div>
+
+
+
+      <!--      -------------------------start  offcanvas for Account Amazon in screen < md ---------------------------------->
+      <div class=" offcanvas offcanvas-end d-md-none " tabindex="-1" id="offcanvasNavbarAccount"
+        aria-labelledby="offcanvasNavbarLabel" >
+        <div class=" offcanvas-header bg-secondary bg-gradient p-3 d-flex row">
+          <h6 class="col-6 offcanvas-title text-white fs-6 fw-normal  " id="offcanvasNavbarLabel">
+            &nbsp;<i class="bi bi-person-fill"></i> </h6>
+          <button type="button" class="col-6  btn-close-white btn-close  " data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+          <h3 class="col-6 offcanvas-title  text-white fs-3 fw-bold  p-3 d-block" id="offcanvasNavbarLabel">
+            {{'Hello'|translate}} {{userName.slice(0,7)}} <br> {{'Your Account'|translate}}
+          </h3>
+
+
+
+
+        </div>
+        <div class=" offcanvas-body p-5 ">
+
+          <!---------------------------------------------------------------------------- menu to account -->
+          <div class="container text-start px-3">
+            <a class="btn btn-warning  rounded-1 m-auto mt-4 mb-4 p-2 ps-4 pe-4 " role="button"
+            [hidden]="isLogged" routerLink="/User/login"> {{'Sign In'|translate}} </a>
+
+            <div class="  col">
+              <div class="p-1 dropdown-item fw-bold">{{'Your Lists'|translate}}</div>
+
+              <button class=" btn p-1 dropdown-item" data-bs-toggle="modal" data-bs-target="#AddToList"
+                data-bs-whatever="Shopping List"><span>{{'Create a List'|translate}}</span></button>
+              <div>
+
+              </div>
+
+            </div>
+            <div class=" col ">
+              <div class="p-1 dropdown-item fw-bold">{{'Your Account'|translate}}</div>
+              <a routerLink="/User/profile" class=" btn p-1 dropdown-item"><span>{{'Account'|translate}}</span></a>
+              <a routerLink="/User/user-orders" class=" btn p-1 dropdown-item"><span>{{'Orders'|translate}}</span></a>
+              <a routerLink="/User/user-address" class=" btn p-1 dropdown-item"><span>{{'Address'|translate}}</span></a>
+              <a routerLink="/Wishlist" class=" btn p-1 dropdown-item"> <span> {{'List'|translate}} </span> </a>
+              <a (click)="logout()" class=" btn p-1 dropdown-item" [hidden]="!isLogged">
+                <span>{{'Sign Out'|translate}}</span></a>
+              <a class=" btn p-1 dropdown-item" routerLink="/User/signup"
+                [hidden]="isLogged" ><span>{{'Sign up'|translate}}</span></a>
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+      <!--      -----------------------the end offcanvas Account Amazon in screen < md  ---------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-----------------------------Cart=========================================== -->
+      <div class="col col-xs-2 text-center  order-md-5  nav-up">
+        <span routerLink="/Cart" class="position-relative">
+
+          <i class="bi bi-cart  text-white w-lighter fs-1"></i>
+          <!--============================= Cart number====================================== -->
+          <span class="position-absolute   translate-middle badge  fs-6 text-warning " style="top: 0;left: 50%;">
+            {{lenh}}</span>
+        </span>
+      </div>
+
+
+      <!--------------------------------- search-----------------------------= -->
+      <div class="col-12 p-3 pb-1 p-md-2 col-md-4 col-lg-5 col-xl-6 order-md-1">
+
+        <div class="container border-0 mx-sm-auto m-md-0 ">
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <div class="input-group">
+                <!-- input search -->
+                <input type="hidden" name="search_param" value="all" id="search_param">
+                <input type="text" class="form-control border-0 rounded-start  " name="x" id="search"
+                  placeholder="  Search  Amazon " #search >
+                <!--  ---------------------------------btn   search-----------------------------------------------------------                 -->
+                <span class="input-group-btn">
+                  <button class="btn btn-default btn-warning p-2 ps-3 pe-3 fs-5 " type="button" (click)="searchByVal(search.value)">
+                    <i class="bi bi-search text-black "></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+      <!------------------------------------------ end search ---------------------------------------->
+
+      <!-- ---------------------------------------flag ------------------------------------------->
+
+      <div class=" dropdown  text-white col d-none text-white d-md-flex order-md-2 nav-up justify-content-center">
+        <a class=" btn dropdown-toggle text-white mt-2" href="#" role="button" id="dropdown09" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <span class=" flag-icon flag-icon-us text-capitalize"> {{currentLang}}</span> &nbsp;
+          <img [src]="'./../../../assets/'+currentLang+'.png'" alt="lang" width="30px" class="rounded-3 " srcset=""> </a>
+          <div class=" dropdown-menu w-auto text-center" aria-labelledby="dropdown09">
+            <button (click)="changeCurrentLang('en')" class=" dropdown-item  text-center mx-auto w-100"><img [src]="'./../../../assets/en.png'" class="rounded-3 "alt="lang" width="30px" srcset="">English</button>
+           <button (click)="changeCurrentLang('ar')" class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/ar.png'" class="rounded-3 " alt="lang" width="30px" srcset=""> Arabic</button>
+           <button *ngIf="PriceLang=='USD'" (click)="changePriceLang('EGP')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">EGP</button>
+           <button *ngIf="PriceLang=='EGP'" (click)="changePriceLang('USD')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">USD</button>
+
+        </div>
+      </div>
+      <!------------------------ ---------------------------------end flag ---------------------------->
+
+      <!-- Account & List -->
+      <div class="col d-none d-md-flex  fs-6 text-white order-md-3 nav-up position-relative  ">
+        <a class=" btn  dropdown-toggle  fs-6 text-white  " href="#" role="button" id="Account2"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="d-inline-block"><span class="  d-block text-white ">{{'Hello'|translate}} {{userName.slice(0,7)}}</span>
+            <span class="  d-block  ">
+              <b>{{'Account&list'|translate}}</b></span></span>
+        </a>
+
+        <div class=" dropdown-menu  position-absolute text-center " aria-labelledby="Account2" style="width:300px;left: -50%;">
+          <a class="btn btn-warning  rounded-1 m-auto mt-4 mb-4 p-2 ps-4 pe-4 " role="button"
+            [hidden]="isLogged" routerLink="/User/login"> {{'Sign In'|translate}} </a>
+
+
+          <div class="row text-start px-3">
+            <div class="  col">
+              <div class="p-1 dropdown-item fw-bold">{{'Your Lists'|translate}}</div>
+
+              <button class=" btn p-1 dropdown-item" data-bs-toggle="modal" data-bs-target="#AddToList"
+                data-bs-whatever="Shopping List"><span>{{'Create a List'|translate}}</span></button>
+              <div>
+
+              </div>
+
+            </div>
+            <div class=" col ">
+              <div class="p-1 dropdown-item fw-bold">{{'Your Account'|translate}}</div>
+              <a routerLink="/User/profile" class=" btn p-1 dropdown-item"><span>{{'Account'|translate}}</span></a>
+              <a routerLink="/User/user-orders" class=" btn p-1 dropdown-item"><span>{{'Orders'|translate}}</span></a>
+              <a routerLink="/User/user-address" class=" btn p-1 dropdown-item"><span>{{'Address'|translate}}</span></a>
+              <a routerLink="/Wishlist" class=" btn p-1 dropdown-item"> <span> {{'List'|translate}} </span> </a>
+              <a (click)="logout()" class=" btn p-1 dropdown-item" [hidden]="!isLogged">
+                <span>{{'Sign Out'|translate}}</span></a>
+              <a class=" btn p-1 dropdown-item" routerLink="/User/signup"
+                [hidden]="isLogged" ><span>{{'Sign up'|translate}}</span></a>
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+      <!-- the end Account & List -->
+      <!--  -->
+
+
+      <!-- Orders -->
+      <div class="col   d-none d-md-flex order-md-4 justify-content-center fs-6 text-white nav-up">
+        <a class=" btn  fs-6 text-white  py-3" routerLink="/User/user-orders" role="button" id="dropdownMenuLink"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="d-inline-block"><span class="d-block">
+              <b>{{'Orders'|translate}}</b></span></span>
+        </a>
+      </div>
+
+
+
+
+
+    </div>
+  </nav>
+
+  <!------------------------------------------------------------- links to nav anther ------------------------------------->
+
+  <nav class="header-bottom m-0 border-0  d-none d-md-block mb-0">
+    <div class="col-12 col-xl-7 col-lg-8 ">
+      <div class="table-responsive-md  border-0  ">
+        <table class="table table-borderless   ">
+          <tbody>
+            <tr>
+              <td class="p-1 m-1 nav-down">
+                <div class=" d-md-flex"><button
+                    class=" navbar-toggler d-flex justify-content-center align-items-center btn  fs-6 text-white"
+                    type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar">
+                    <i class="bi bi-list  text-white fs-4 fw-light"></i> &nbsp; <span>{{'All'|translate}}</span>
+                  </button></div>
+              </td>
+              <td class="m-1 text-center  nav-down" style="width:fit-content;"> <a
+                  class="navbar-brand fs-6 text-white  " routerLink="/Home"><span id="nav-your-amazon-text"><span
+                      class="nav-shortened-name">{{userName.slice(0,7)}}</span>{{"'s amazon.eg"|translate}}</span></a> </td>
+              <!-- <td class="m-1 text-center  nav-down" style="width:fit-content;"> <a
+                  class=" navbar-brand fs-6 text-white  " href="#">11.11 Deals</a> </td> -->
+              <td class="m-1 text-center  nav-down" style="width:fit-content;"> <a
+                  class=" navbar-brand fs-6 text-white  " href="#">{{'Sell'|translate}}</a> </td>
+
+                  <td class="m-1 text-center nav-down" style="width:fit-content;"> <a class=" navbar-brand fs-6 text-white "
+                    href="#"> {{'Help'|translate}}</a> </td>
+
+              <td class="m-1 text-center  nav-down" style="width:fit-content;" *ngFor="let cate of categories">
+                <a class=" navbar-brand fs-6 text-white text-center" [routerLink]="['/Category/cate/', cate.name]" *ngIf="currentLang =='en'">
+                  {{cate.name}}</a>
+                <a class=" navbar-brand fs-6 text-white text-center" [routerLink]="['/Category/cate/', cate.arName]" *ngIf="currentLang =='ar'">
+                  {{cate.arName}}</a>
+</td>
+ <td class="m-1 text-center  nav-down" style="width:fit-content;">
+   <a class=" navbar-brand fs-6 text-white" [routerLink]="['/Product/of/sale']" routerLinkActive="router-link-active" >{{'All Sale'|translate}}</a> </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+      <!--      -------------------------start  offcanvas for All in screen > md ---------------------------------->
+      <div class=" offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class=" offcanvas-header bg-secondary bg-gradient p-5">
+          <h5 class=" offcanvas-title text-white fs-3 fw-bold" id="offcanvasNavbarLabel"><i
+              class="bi bi-person-circle"></i> &nbsp; <b>{{'Hello'|translate}} {{userName.slice(0,7)}}</b></h5>
+          <button type="button" class="btn-close-white btn-close " data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+
+
+
+        </div>
+        <div class=" offcanvas-body p-5 ">
+
+
+
+
+          <div *ngIf="currentLang == 'en'">
+            <div class="text-start " *ngFor="let cate of categories">
+              <a class="btn p-2 fw-bold  d-inline-flex  text-start align-items-center rounded border-0" type="button"
+                data-bs-toggle="  ----   " data-bs-target="#collapseExample" aria-expanded="true"
+                aria-controls="collapseExample" [routerLink]="['/Category/cate/', cate.name]"
+                (click)="subCate(cate.name)">
+                {{cate.name}}
+              </a>
+            </div>
+            <div class="text-start " *ngFor="let sub of subCategories">
+              <a class="btn p-2 d-inline-flex align-items-center rounded border-0 "
+                [routerLink]="[ '/Product/products-subcategory/', sub.name] ">
+                {{sub.name}}
+              </a>
+            </div>
+          </div>
+
+
+
+
+          <div *ngIf="currentLang == 'ar'">
+            <div class="text-start " *ngFor="let cate of categories">
+              <a class="btn p-2 fw-bold  d-inline-flex  text-start align-items-center rounded border-0" type="button"
+                data-bs-toggle="  ----   " data-bs-target="#collapseExample" aria-expanded="true"
+                aria-controls="collapseExample" [routerLink]="['/Category/cate/', cate.arName]"
+                (click)="subCate(cate.arName)">{{cate.arName}}
+              </a>
+            </div>
+            <div class="text-start " *ngFor="let sub of subCategories">
+              <a class="btn p-2 d-inline-flex align-items-center rounded border-0 "
+                [routerLink]="[ '/Product/products-subcategory/', sub.arName] ">
+                {{sub.arName}}
+              </a>
+            </div>
+
+
+
+          </div>
+          <div class=" dropdown  text-black col  flag-nav-down">
+            <a class=" btn dropdown-toggle text-black mt-2" href="#" role="button" id="dropdown09" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <span class=" flag-icon flag-icon-us text-capitalize"> {{currentLang}}</span> &nbsp;
+              <img [src]="'./../../../assets/'+currentLang+'.png'" alt="lang" width="30px" class="rounded-3 " srcset=""> </a>
+              <div class=" dropdown-menu w-auto text-center" aria-labelledby="dropdown09">
+                <button (click)="changeCurrentLang('en')" class=" dropdown-item  text-center mx-auto w-100"><img [src]="'./../../../assets/en.png'" class="rounded-3 "alt="lang" width="30px" srcset="">English</button>
+                <button (click)="changeCurrentLang('ar')" class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/ar.png'" class="rounded-3 " alt="lang" width="30px" srcset=""> Arabic</button>
+                <button *ngIf="PriceLang=='USD'" (click)="changePriceLang('EGP')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">EGP</button>
+                <button *ngIf="PriceLang=='EGP'" (click)="changePriceLang('USD')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">USD</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--      -----------------------the end offcanvas for All in screen > md ---------------------------------->
+
+
+    </div>
+  </nav>
+  <nav class="header-bottom text-white p-2 d-block d-md-none justify-content-center">
+    <span class=" d-inline-flex col">    <a href="#" class="text-white btn d-inline-flex "><i class="bi bi-geo-alt"></i>
+      {{'Deliver'|translate}} {{userName.slice(0,7)}} - {{Igovernate}}</a></span>
+      <span class=" d-inline-flex col float-end" dir="rtl" *ngIf="currentLang=='en'">   
+        <div class=" dropdown  text-white col m-auto  flag-nav-down">
+          <a class=" btn dropdown-toggle text-white " href="#" role="button" id="dropdown09" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span class=" flag-icon flag-icon-us text-capitalize"> {{currentLang}}</span> &nbsp;
+            <img [src]="'./../../../assets/'+currentLang+'.png'" alt="lang" width="30px" class="rounded-3 " srcset=""> </a>
+            <div class=" dropdown-menu w-auto text-center" aria-labelledby="dropdown09">
+              <button (click)="changeCurrentLang('en')" class=" dropdown-item  text-center mx-auto w-100"><img [src]="'./../../../assets/en.png'" class="rounded-3 "alt="lang" width="30px" srcset="">English</button>
+              <button (click)="changeCurrentLang('ar')" class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/ar.png'" class="rounded-3 " alt="lang" width="30px" srcset=""> Arabic</button>
+              <button *ngIf="PriceLang=='USD'" (click)="changePriceLang('EGP')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">EGP</button>
+              <button *ngIf="PriceLang=='EGP'" (click)="changePriceLang('USD')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">USD</button>
+          </div>
+        </div>
+      </span>
+      <span class=" d-inline-flex col float-start " *ngIf="currentLang=='ar'">   
+        <div class=" dropdown  text-white col m-auto  flag-nav-down">
+          <a class=" btn dropdown-toggle text-white " href="#" role="button" id="dropdown09" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span class=" flag-icon flag-icon-us text-capitalize"> {{currentLang}}</span> &nbsp;
+            <img [src]="'./../../../assets/'+currentLang+'.png'" alt="lang" width="30px" class="rounded-3 " srcset=""> </a>
+            <div class=" dropdown-menu w-auto text-center" aria-labelledby="dropdown09">
+              <button (click)="changeCurrentLang('en')" class=" dropdown-item  text-center mx-auto w-100"><img [src]="'./../../../assets/en.png'" class="rounded-3 "alt="lang" width="30px" srcset="">English</button>
+              <button (click)="changeCurrentLang('ar')" class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/ar.png'" class="rounded-3 " alt="lang" width="30px" srcset=""> Arabic</button>
+              <button *ngIf="PriceLang=='USD'" (click)="changePriceLang('EGP')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">EGP</button>
+              <button *ngIf="PriceLang=='EGP'" (click)="changePriceLang('USD')"  class=" dropdown-item text-center mx-auto  w-100"><img [src]="'./../../../assets/41Jq18y8bKL.png'" class="rounded-3 " alt="lang" width="30px" srcset="">USD</button>
+          </div>
+        </div>
+      </span>
+  </nav>
+</header>
+
+
+<div class="modal fade m-auto vw-100 justify-content-center" id="AddToList" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog p-5 m-auto">
+    <div class="modal-content">
+      <div class="modal-header ps-2 pe-2 pb-3 bg-light">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Create a new list
+        </h5>
+        <button type="button " class="btn-close mt-0 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-3">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">List name
+            </label>
+            <input type="text" class="form-control rounded-3 p-2" id="recipient-name" #list />
+          </div>
+        </form>
+        <span>Use lists to save items for later. All lists are private
+          unless you share them with others.</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="ps-3 pe-3 p-2 m-3 rounded-3 btn btn-light" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" (click)="createWishList(list.value)" class="ps-3 pe-3 p-2 m-3 rounded-3 btn btn-warning" data-bs-dismiss="modal">
+          Create List
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

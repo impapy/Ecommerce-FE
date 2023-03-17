@@ -1,0 +1,203 @@
+<div class="container-fluid bodycolor">
+  <div class="row mt-3">
+    <div class="col-9 ">
+      <div class="card shadow-sm">
+        <div *ngIf="len<1" class="card">
+          <div class="card-body m-3">
+            <h2>{{'Your Amazon Cart is empty'|translate}}</h2>
+            <p>
+              {{'Your Shopping Cart lives to serve. Give it purpose — fill it with groceries, clothing, household supplies, electronics, and more.Continue shopping on the'|translate}}
+              <a class="hrefalink" href=""> {{'Amazon.com homepage'|translate}} </a>{{', learn about'|translate}}
+              <!-- <a class="hrefalink" href="">{{'today's deals'|translate}} </a> -->
+              {{', or visit your'|translate}} <a class="hrefalink" href="">{{'Wish List'|translate}} </a>. </p>
+          </div>
+        </div>
+        <div *ngIf="len>0" class="card-body">
+          <div class="fs-4 text-capitalize">{{'Shopping Cart'|translate}}</div>
+          <p class="hrefalink" (click)="onchecked()">{{'Select all items'|translate}} </p>
+          <hr>
+
+          <div *ngFor="let itemprodcatd of product ;let i=index" class="card form-check mt-3">
+            <div class="form-check-label" for="flexCheckDefault">
+              <div class=" mb-3 ">
+                <div class="row g-0 ">
+                  <div class="col-md-1  p-3 text-md-center" *ngIf=" itemprodcatd.discount == 0">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked]="checks"
+                      (change)="bulk($event,itemprodcatd.priceafterdiscount,carts.items[i])"
+                      *ngIf="itemprodcatd.countInStock>0">
+                  </div>
+                  <div class="col-md-1  p-3 text-md-center" *ngIf=" itemprodcatd.discount != 0">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked]="checks"
+                      (change)="bulk($event,itemprodcatd.priceafterdiscount,carts.items[i])"
+                      *ngIf="itemprodcatd.countInStock>0">
+                  </div>
+                  <div class="col-md-4 mt-3">
+                    <img [src]="ImgURL+itemprodcatd.imagePath[0]" class="img-fluid rounded-start imagecarssize"
+                      alt="...">
+                  </div>
+                  <div class="col-md-7">
+                    <div class="card-body">
+                      <!-- <div class="card-text fonttextbig">{{itemprodcatd.description}}</div> -->
+                      <div class="card-text fonttextbig">{{itemprodcatd.name}}{{itemprodcatd.arname}}</div>
+                      <div class="fonttextbig" *ngIf=" itemprodcatd.discount == 0">{{itemprodcatd.price |currency }}
+                      </div>
+                      <div class="fonttextbig" *ngIf=" itemprodcatd.discount != 0">
+                        {{itemprodcatd.priceafterdiscount |currency }}
+
+                        <span class="text-decoration-line-through fs-6 ">
+                          {{itemprodcatd .price|currency }}</span>
+                      </div>
+                      <div><i class="bg-warning fonttextbig">{{'#1 Best Brand'|translate}}</i><span
+                          class="fonttextbig">&nbsp;{{itemprodcatd.brand}}
+                        </span></div>
+                      <div *ngIf="itemprodcatd.countInStock>0" class="card-text"><small
+                          class="text-muted text-secondary fonttextbig">{{'in stock'|translate}}</small></div>
+                      <div *ngIf="itemprodcatd.countInStock==0" class="card-text"><small
+                          class="text-muted text-secondary fonttextbig">{{'Out Of Stock'|translate}}</small></div>
+
+                      <div class=" d-block">
+                        <select name="cars" class="cars" #selectedDevice *ngIf="itemprodcatd.countInStock>0">
+                          <option value="" selected disabled hidden>{{itemprodcatd.Quentity}}</option>
+                          <option [value]="x+1"
+                            (click)="onChange(selectedDevice.value,itemprodcatd._id,itemprodcatd.countInStock)"
+                            *ngFor="let item of createArray(itemprodcatd.countInStock) ; let x=index" class="cars">
+                            {{x+1}}</option>
+
+                        </select>&nbsp;
+                        <p class="d-sm-inline d-block fonttextbig linelink" (click)="onDelete(itemprodcatd._id)">
+                          {{'Delete'|translate}}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+          <div *ngIf="count>0" class="float-end mt-2">{{'Subtotal'|translate}} {{count}} {{'item'|translate}}):
+            {{totalprice |currency}} </div>
+        </div>
+
+      </div>
+      <div class="row mt-3">
+        <div class=" ">
+          <div class="card w-100 shadow-sm">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="fonttextbig">{{'Your Items'|translate}}</div>
+                <a class="ms-5 fonttextbig" href="#">{{'No items saved for later'|translate}}</a>
+                <a class="ms-5 fonttextbig" href="#">{{'Buy it again'|translate}}</a>
+              </li>
+              <li class="list-group-item fonttextbig">{{'No items to Buy again.'|translate}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3 lh-2 fonttextbig">
+        <p>
+
+          {{"Text in cart 1"|translate}}
+
+          {{" Do you have a gift card or promotional code? We'll ask you to enter your claim code when it's time to pay"|translate}}
+        </p>
+      </div>
+
+
+
+
+
+    </div>
+    <div class="col-3">
+      <div class="row ">
+        <div class="">
+          <div class="card shadow-sm ">
+            <div class="card-body">
+              <h5 *ngIf="count<1" class="card-title fonttext fonttextbig">{{'No items selected'|translate}}</h5>
+              <div *ngIf="count>0" class="">{{'Subtotal'|translate}} {{count}} {{'item'|translate}}): {{totalprice }}
+              </div>
+
+              <button type="button" class=" mt-2 btn btn-outline-warning w-100 fonttext" routerLink="/Shipping"
+                (click)="onAddTotal()" [disabled]="count<1">{{'proceed to checkout'|translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card text-dark bg-whight mt-3 w-100 shadow-sm d-none d-md-block ">
+        <div class="card-header">{{'Your recently viewed items'|translate}}</div>
+        <div class="card-body">
+          <div *ngFor="let itemrandom of randomeProduct" class="card border-0">
+            <div class="row">
+              <div class="col-md-3">
+                <img [src]="ImgURL+itemrandom.imagePath[0]" class="img-fluid rounded-start imagrrandomsize" alt="...">
+              </div>
+              <div class="col-md-9">
+                <div class="card-body lh-1">
+                  <div class="card-title fonttext w-100">
+                    {{itemrandom.name | slice:0:20}}{{itemrandom.arname | slice:0:20}}...</div>
+
+                  <div class="card-title fonttext w-100" *ngIf=" itemrandom.discount == 0">
+                    {{itemrandom.price |currency }}</div>
+                  <div class="card-title fonttext w-100" *ngIf=" itemrandom.discount != 0">
+                    {{itemrandom.priceafterdiscount |currency }}
+                    <span class="text-decoration-line-through fs-6 ">
+                      {{itemrandom .price|currency }}</span>
+                  </div>
+                  <button type="button" class="btn btn-outline-warning w-100 fonttext"
+                    (click)="onAddCart(itemrandom)">{{'add to card'|translate}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+    <div class="row mt-2 shadow-lg">
+      <p class="lh-1 fw-bold mt-1 fonttextbig">{{'also you may like buy'|translate}}</p>
+
+
+
+
+      <!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+      <div class="col-12   outer d-flex hi content" id="content">
+
+
+        <div class="  inner2 mt-3 mx-5" *ngFor="let itemsexrandom of randometenProduct ; index as i"
+          style="width: 10rem;" tabindex="0" role="button">
+          <div *ngIf="i < 6">
+            <div class="text-center w-100" style="min-height: 100px;"><img [src]="ImgURL+itemsexrandom.imagePath[0]"
+                class=" rounded m-auto " height="100"></div>
+            <div class="">
+              <div class="fonttextbig">{{itemsexrandom.name | slice:0:10}}{{itemsexrandom.arname | slice:0:10}} ...
+              </div>
+
+              <div *ngIf=" itemsexrandom.discount == 0">{{itemsexrandom.price |currency }}</div>
+              <div *ngIf=" itemsexrandom.discount != 0">
+                <span>{{itemsexrandom.priceafterdiscount |currency }}
+                </span>
+                <span class="text-decoration-line-through fs-6 ">
+                  {{itemsexrandom .price|currency }}</span>
+              </div>
+              <div>
+                <button type="button" class="btn btn-outline-warning btn-sm "
+                  (click)="onAddCart(itemsexrandom)">{{'add to card'|translate}}</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-3"></div>
+    </div>
+  </div>

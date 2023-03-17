@@ -1,0 +1,80 @@
+<div class="container-fluid p-0  d-flex flex-column justify-content-center">
+    <div class="col text-center">
+        <a class="a-link-nav-icon" routerLink="/Home">
+            <img src="assets/pngegg.png" width="120px" alt="" srcset="" />
+        </a>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+        <div class="form">
+            <form class="row g-3" >
+                <form [formGroup]="form" (ngSubmit)="login()">
+                    <div class="col-md-12">
+                        <h4 class="fs-3">{{'Sign In'|translate}}</h4>
+                        <label class="mt-4" for="inputemail42" class="form-label fw-bold" style="font-size: 13px;">{{'Email'|translate}}</label>
+                        <input type="email" class="form-control mt-3" id="inputemail42" formControlName="email"
+                            required />
+                    </div>
+                    <div class="col-md-12 position-relative">
+                        <label class="mt-4" for="inputemail4" class="form-label fw-bold" style="font-size: 13px;">{{'Password'|translate}}</label>
+                        <input  [type]="showPassword? 'text' : 'password'"  class="form-control mt-3" id="inputemail4" formControlName="password"
+                            required /> 
+                            <i   [ngClass]=" {
+          'bi bi-eye-slash-fill': !showPassword,
+          'bi bi-eye-fill': showPassword
+        } " class="position-absolute"  id="eye" (click)='togglePassword()'></i>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btnn p-2 rounded-3" [disabled]="!form.valid"
+                            style="color: black; font-size: 14px;">{{'Continue'|translate}}</button>
+                    </div>
+                   
+                        <a (click)="signInWithGoogle()" class="btn btn-outline-primary btn-sm w-100 mt-2">
+                            <i class="fab fa-google"></i> Sign in with Google
+                          </a>
+                    </form>
+                <div id="legalTextRow" class="col-12 mt-3">
+                    {{"By creating an account, you agree to Amazon's"|translate}}
+                    <div class="m-auto mt-2 text-center">
+                    <a class="link-normal" target="_blank" rel="noopener" [routerLink]="['/ForPass']" routerLinkActive="router-link-active"  style="font-size: 12px;">
+                        {{'Forget password'|translate}}
+                    </a></div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid new-acc-div p-3 text-center d-flex flex-column justify-content-center">
+    <div class="row">
+        <h5 class="text-muted " style="font-size: 13px;">{{'New to Amazon?'|translate}}</h5>
+        <div class="col-12">
+            <button type="submit" class="btn btn-create-account px-3"><span class="create-btn "><a routerLink="/User/signup" class="text-dark text-decoration-none">{{"Create your Amazon account"|translate}}</a></span></button>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-3  text-center fs-6 d-flex flex-column justify-content-center makitcenter" id="footer">
+    <div class="section spacing-small text-center size-mini">
+        <span class="auth-footer-seperator"></span>
+
+         
+        <span class="auth-footer-seperator"> </span>
+
+        <a class="link-normal" target="_blank" rel="noopener" href="#" style="font-size: 12px;">
+            {{'Privacy Notice'|translate}}
+        </a>
+        <span class="auth-footer-seperator "></span>
+
+        <a class="link-normal" target="_blank" rel="noopener" href="#" style="font-size: 12px;">
+            {{"Help"|translate}}
+        </a>
+        <span class="auth-footer-seperator"> </span>
+    </div>
+    <div class="section spacing-nonetext-center">
+        <span class="size-mini color-secondary" style="font-size: 12px;">
+            {{'© 1996-2021, Amazon.com, Inc. or its affiliates'|translate}}
+        </span>
+    </div>
+</div>

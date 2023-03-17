@@ -1,0 +1,82 @@
+<div class="col-12 d-flex justify-content-center" *ngIf="heden=='Email'">
+  <div class="form">
+
+
+              <div class="col-md-12">
+                  <h4 class="fs-3">{{'check mail'|translate}}</h4>
+                  <label class="mt-4" for="inputemail4" class="form-label fw-bold" style="font-size: 13px;">{{'Email'|translate}}</label>
+                  <input type="email" class="form-control mt-3" id="inputemail4" name="userEmail"  #userEmail
+                       />
+              </div>
+
+              <div class="col-12 mt-3">
+                <button  class="btn btnn" (click)="checkEmail(userEmail.value)"
+                style="color: black; font-size: 14px;">{{'Continue'|translate}}</button>
+
+              </div>
+
+              <!-- <p><input type="email" id="username" name="username" #username></p>
+
+              <button type="button" (click)="checkEmail(username.value)">Clickme</button> -->
+
+  </div>
+
+
+
+
+</div>
+
+<div class="col-12 d-flex justify-content-center" *ngIf="heden=='Code'">
+
+  <div class="form" >
+
+
+              <div class="col-md-12">
+                  <h4 class="fs-3">{{'Enter code'|translate}}</h4>
+                  <label class="mt-4" for="inputemail4" class="form-label fw-bold" style="font-size: 13px;">{{'code'|translate}}</label>
+                  <input type="number" class="form-control mt-3" id="inputemail4" name="userCode"  #userCode
+                       />
+              </div>
+
+              <div class="col-12 mt-3">
+                <button  class="btn btnn" (click)="code(userCode.value)"
+                style="color: black; font-size: 14px;">{{'Continue'|translate}}</button>
+
+              </div>
+
+              <!-- <p><input type="email" id="username" name="username" #username></p>
+
+              <button type="button" (click)="checkEmail(username.value)">Clickme</button> -->
+
+  </div>
+
+</div>
+
+<div class="col-12 d-flex justify-content-center" *ngIf="heden=='Change'">
+
+  <div class="form" >
+
+
+              <div class="col-md-12">
+                  <h4 class="fs-3">{{'Enter new password'|translate}}</h4>
+                  <label class="mt-4" for="inputemail4" class="form-label fw-bold" style="font-size: 13px;">{{'password'|translate}}</label>
+                  <input type="password" class="form-control mt-3" id="inputemail4" name="userPass"  #userPass
+                       />
+              </div>
+
+              <div class="col-12 mt-3">
+                <button  class="btn btnn" (click)="Change(userPass.value)"
+                style="color: black; font-size: 14px;">{{'Continue'|translate}}</button>
+
+              </div>
+
+              <!-- <p><input type="email" id="username" name="username" #username></p>
+
+              <button type="button" (click)="checkEmail(username.value)">Clickme</button> -->
+
+  </div>
+
+
+
+
+</div>

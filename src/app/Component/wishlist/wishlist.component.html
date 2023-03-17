@@ -1,0 +1,211 @@
+<!-- ----------------------------start main----------------------------------------- -->
+
+<div class="contanier   mb-0 m-5  p-5 pb-0 d-grid justify-content-center align-content-center"
+  style="margin-bottom: 0 !important; padding-bottom: 0 !important;">
+  <div class="col mt-5 m-sm-4 pb-5 border-bottom">
+    <div class="col mb-5">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="row">
+            <div class="col-md-3 col-12 col-sm-4 m-auto">
+              <img alt="" height="100" width="100"
+                src="https://m.media-amazon.com/images/G/01/wishlist/intro/list_check_mark._CB461057757_.svg"
+                class="  img-fluid  p-lg-3 ">
+            </div>
+            <div class="col-md-9 col-12 col-sm-8 ps-md-2">
+              <h3>{{"Save time"|translate}}</h3>
+              <p>{{"Add your items and ideas in one convenient location"|translate}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col-md-3 col-12 col-sm-4 m-auto">
+              <img alt="" height="100" width="100"
+                src="https://m.media-amazon.com/images/G/01/wishlist/intro/gift-box._CB461057757_.svg"
+                class="  img-fluid  p-lg-3 ">
+            </div>
+            <div class="col-md-9 col-12 col-sm-8 ps-md-2">
+              <h3>{{"Give great gifts"|translate}}</h3>
+              <p>{{"Remember your friends' lists and share yours"|translate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -----------------------the secand section in category-------------------------- -->
+
+    <div class="col mt-5">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="row">
+            <div class="col-md-3 col-12 col-sm-4 m-auto">
+              <img alt="" height="100" width="100"
+                src="https://m.media-amazon.com/images/G/01/wishlist/intro/price_drop_graph._CB461057756_.svg"
+                class="  img-fluid  p-lg-3 ">
+            </div>
+            <div class="col-md-9 col-12 col-sm-8 ps-md-2">
+              <h3>{{"Check price changes"|translate}}</h3>
+              <p>{{"Check when items from your lists drop in price"|translate}}</p>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col">
+          <div class="row">
+            <div class="col-md-3 col-12 col-sm-4 m-auto">
+              <img alt="" height="100" width="100"
+                src="https://m.media-amazon.com/images/G/01/wishlist/intro/notification_bell._CB461057757_.svg"
+                class="  img-fluid  p-lg-3 ">
+            </div>
+            <div class="col-md-9 col-12 col-sm-8 ps-md-2">
+              <h3>
+                {{"Get notified about deals"|translate}}</h3>
+              <p>{{"Get push notifications for deals when using the mobile app"|translate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- ----------------------------start main----------------------------------------- -->
+<div class="container m-auto ">
+  <div class="col  border border-1 mt-md-3  mb-md-5  p-0">
+    <!-- -------------------tap your list------------------------ -->
+    <ul class=" border border-top-0 border-1  bg-secondary bg-opacity-10 d-flex justify-content-between row " id="headeryourlist"
+      style="list-style: none;margin-top: -2.5px;">
+      <li id="tab-yourlist" class=" d-flex  text-start fs-4 p-2  border border-bottom-0 border-danger text-danger bg-light"
+        style="width: fit-content ; ">{{"Your Lists"|translate}}</li>
+        <li class="d-flex ms-auto col-1 my-auto me-4 text-end">  <button class=" btn p-1 dropdown-item" data-bs-toggle="modal" data-bs-target="#_AddToList"
+          data-bs-whatever="Shopping List">{{"Create a list"|translate}}</button></li>
+    </ul>
+    <!-- ----------------------------------start --  banner------------------------------------------- -->
+
+
+
+
+    <div id="baner-list" class=" m-0   ">
+      <div class="row">
+        <div class="col-md-3 col-12 text-start  border ">
+          <button type="button "
+            class="btn  btn-link link-dark fs-5  bg-secondary bg-opacity-10 w-75 m-3 my-auto px-3 py-1 my-md-3"
+            (click)="gitWishListByName('')">{{"All"|translate}}</button>
+          <hr class="">
+          <div *ngFor="let namelist of wishlist" class=" ">
+            <div class="my-3  rounded w-100 bg-secondary bg-opacity-10">
+              <div class="btn-group my-2 w-md-75 w-100 " role="group" aria-label="Basic example">
+                <button type="button " class="btn  btn-link link-dark  w-75  fs-5 px-3 py-1 "
+                  (click)="gitWishListByName(namelist.name)">{{namelist.name}}</button>
+                <button type="button" class="btn  btn-link  w-md-25 w-100"
+                  (click)="DeleteWithList(namelist)">
+                  {{"Delete"|translate}}
+                </button>
+              </div>
+
+
+            </div>
+
+
+          </div>
+        </div>
+        <div class="col-md-9 col-12">
+          <!-- <b class="">{{namelist.nameEn}}</b> -->
+          <div class="pt-md-1"> <div class=" fs-3  m-2  ">{{NameOfList}}</div>
+            <img src="../../../assets/1024px-User-avatar.svg.png" alt="..." class="img-thumbnail rounded-circle imageprof"><b
+              class=" text-start fs-5 ">{{userName}}</b>
+
+            <hr class="mt-2">
+            <div *ngIf="lnList<=0" class="w-100 text-center  bg-secondary bg-opacity-10 py-md-3  mt-5">
+              <b class="fs-2 ">{{"Embty"|translate}}</b>
+            </div>
+            <div class="card mt-3 border py-md-3 px-3 py-3" *ngFor="let itemlistname of productList ; let x=index">
+              <div class="row g-0 mt-4">
+                <div class="col-12 col-md-4 text-center">
+                  <img [src]="ImgURL+itemlistname.imagePath[0]" class="img-fluid rounded-start imagecard" width="100%"
+                    alt="...">
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="card-body">
+                    <h5 class="card-title  nameWish"><a [routerLink]="['/Product/'+itemlistname._id]" routerLinkActive="router-link-active" >{{itemlistname.name}}</a></h5>
+                    <p class="card-text fw-bold">{{itemlistname.price |currency}}
+                    </p>
+                    <div *ngIf="itemlistname.countInStock>0" class="card-text"><small
+                        class="text-muted text-secondary fonttextbig">{{"in stock"|translate}}</small></div>
+                    <div *ngIf="itemlistname.countInStock<1" class="card-text"><small
+                        class="text-muted text-secondary fonttextbig">{{"not in stock"|translate}} </small></div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                  <div class="d-grid gap-2 col-6 mx-auto mt-3">
+                    <button *ngIf="itemlistname.countInStock>0" class="btn btn-warning py-md-1 rounded-3" type="button"
+                      (click)="AddToCart(itemlistname)">{{"Add To Card"|translate}}</button>
+                    <button class="btn border rounded-3 opacity-75 py-md-1 " type="button"
+                      (click)="DeleteItemFromList(itemlistname)">{{"Delete"|translate}}</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------------------------the end banner & section for to bg- white----------------  -->
+    <!-- ----------------------start category------------------------------------ -->
+
+
+  </div>
+</div>
+
+
+
+<div class="modal fade m-auto vw-100 justify-content-center" id="_AddToList" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog p-5 m-auto">
+    <div class="modal-content">
+      <div class="modal-header ps-2 pe-2 pb-3 bg-light">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Create a new list
+        </h5>
+        <button type="button " class="btn-close mt-0 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-3">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">List name
+            </label>
+            <input type="text" class="form-control rounded-3 p-2" id="recipient-name" #list />
+          </div>
+        </form>
+        <span>Use lists to save items for later. All lists are private
+          unless you share them with others.</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="ps-3 pe-3 p-2 m-3 rounded-3 btn btn-light" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button"
+        class="ps-3 pe-3 p-2 m-3 rounded-3 btn btn-warning" data-bs-dismiss="modal" (click)="createWishList(list.value)">
+          Create List
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

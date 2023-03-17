@@ -1,0 +1,148 @@
+ng-image-slider {
+    height: 300px;
+}
+.s_body {
+    background-color: rgb(230, 225, 225);
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+.small-text-m {
+    font-size: 11px;
+    padding-bottom: -10px;
+}
+
+
+.f-btn-bg {
+    background-color: #485769;
+    color: rgb(255, 255, 255);
+}
+
+.f-btn-bg:hover {
+    background-color: #516072;
+}
+
+.color-white {
+    color: white;
+    font-size: 14px;
+}
+
+.c-width {
+    width: 65%;
+    margin: auto;
+}
+
+.carousel {
+    width: 100%;
+}
+
+.slide-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .slide-box img {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .slide-box img {
+        -ms-flex: 0 0 33.3333%;
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+}
+
+@media (min-width: 992px) {
+    .slide-box img {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: .5rem;
+}
+
+// footer line started
+.nav-footer-line {
+    border-top: 1px solid #3a4553;
+    margin-bottom: 40px;
+}
+
+// footer line ended
+.nav-div {
+    text-align: center;
+}
+
+.navbar-expand-lg {
+    margin-left: 170px;
+    font-size: 10px;
+}
+
+.lang-div {
+    margin-left: 250px;
+}
+
+.bodyhome {
+    background-color:#EAEDED;
+}
+
+.amazon-logo {
+    width: 72px;
+    margin-right: 5rem;
+    margin-top: 10px;
+}
+
+// .footer-btn{
+//     font-size: 12px;
+// }\\
+.namecat {
+    display: block;
+}
+
+.imagecard,.For_Img {
+   
+    height: 240px;
+}
+
+.sizeimagecat {
+ max-width: 100%;
+    height:100px;
+   
+}
+
+.navFooterMoreOnAmazon {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.navFooterLinkLine {
+    margin: 10px auto;
+}
+
+.navFooterPadItemLine {
+    max-width: 1000px;
+    text-align: center;
+}
+
+.navFooterLine {
+    font-family: inherit;
+    color: white;
+    line-height: 18px;
+}
+
+.navFooterDescLine {
+    background-color: #131A22;
+    padding: 30px 0;
+    margin: 30px 0 0;
+}

@@ -1,0 +1,91 @@
+* {
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:FamilyHelveticaNeue-Thin serif;
+  // Family
+  // HelveticaNeue-Thin; serif
+}
+
+.txt-resvies {
+  display: inline-block;
+  font-size: 1em;
+  width: fit-content;
+}
+
+.hoverLink {
+  font-weight: 500;
+}
+
+.hoverLink:hover {
+  color: #E47911;
+
+border-bottom: #E47911 solid 1px;
+}
+#baner-list{
+background-size: cover;
+}
+
+
+
+
+
+.btn-link,a{
+  color:#007185 ;
+  text-decoration: none;
+}
+.btn-link:hover,a:hover{
+  color: #E47911;
+  text-decoration: #E47911 solid 1px underline;
+  // background-color: #E47911;
+}
+
+
+
+
+
+
+.bgcollist{
+  background-color: rgb(209, 206, 206);
+  font-size: 150%;
+}
+.Namelist{
+  display: inline;
+  margin-left: 50%;
+  font-size: 200%;
+  color: #E47911;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.delicon{
+  color: #11bae4;
+}
+.delicon:hover{
+color: red;
+}
+.bgcollist:hover{
+  background-color: #11bae4;
+  cursor: pointer;
+}
+.nameWish:hover{
+color:red;
+}
+.imagecard{
+width: 50%;
+height: 150px;
+}
+.imageprof{
+  width: 3%;
+  display: inline;
+}
+// #tab-yourlist{
+
+//   // background-color: white;
+//   // border-bottom: none;
+//   // top:-10;
+//   // left: 0;
+// }
+#headeryourlist{
+  margin-top: 13px;
+
+}

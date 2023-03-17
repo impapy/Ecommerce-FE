@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding-left:  0;
+    padding-right: 0;
+    box-sizing: border-box;
+}
+.header-top,
+.header {
+    background-color: #232f3e;
+}
+.header-bottom {
+    background-color: #485769;
+}
+.offcanvas-header {
+    background-color: #232f3e;
+}
+
+.nav-down {
+    border: #485769 solid 1px;
+    margin: 1px;
+}
+.active{
+    color: orange;
+}
+.nav-down:hover {
+    border: white solid 1px;
+}
+.nav-up {
+    border: #232f3e solid 1px;
+    margin:0 ;height: 100%;
+}
+
+.nav-up:hover {
+    border: white solid 1px;
+    
+}
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+

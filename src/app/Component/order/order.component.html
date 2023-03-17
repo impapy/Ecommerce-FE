@@ -1,0 +1,144 @@
+<div class="container-md">
+  <div class="title">
+    <h1><strong>{{'Review your order'|translate}}</strong></h1>
+    <p>
+      {{"By placing your order, your agree to amazon.eg's"|translate}}
+      <a class="blue btn-link"> {{"privacy notice"|translate}}</a>{{'and'|translate}}
+      <a class="blue btn-link">{{'conditions of user &sale'|translate}}</a>
+    </p>
+  </div>
+  <div class="row w-100 main ">
+    <div class="col-12 col-md-8 ">
+      <div class=" text-center d-flex justify-content-between border-1 border-end container-md p-2">
+        <div class="col firstrow fs-6">
+          <p class="lines fw-bold">{{'Shipping address'|translate}}</p>
+          <p class="lines">{{ order.shippingAddress.fullName }}</p>
+          <p class="lines">{{ order.shippingAddress.phone }}</p>
+          <p class="lines">{{ order.shippingAddress.countryName }}</p>
+          <p class="lines">
+            {{ order.shippingAddress.governate }},
+            {{ order.shippingAddress.city }}
+          </p>
+          <a class="lines btn-link"> {{'Add delivery Instructions'|translate}}</a>
+        </div>
+        <div class="col secondrowf fs-6">
+          <p class="fw-bold">{{'Payment method'|translate}}</p>
+          <p>{{ order.paymentmethod }}</p>
+        </div>
+      </div>
+
+      <!-- ======================here items for orders======================================== -->
+
+      <div class="w-100 m-0 mt-1 p-0 ">
+        <div class="col w-100 border border-1 m-0 mt-2  p-3">
+
+          <div class="card-title fw-bold fs-5  " style="color:darkorange;">
+            <span class="text ">{{'Estimated delivery :'|translate}} </span><span class="date ">
+              {{today}}
+            </span>
+          </div>
+          <div class="row" *ngFor="let item of prdsInOrder.prd; let i = index">
+            <div class="col-md-3 text-center">
+              <img [src]="ImgURL+item.imagePath[0]" alt="" class="img-thumbnail p-2" height="70%" srcset="">
+            </div>
+            <div class="col-8 text-body">
+              <p class=" fs-6 fw-bold m-2">{{ item.name }}{{ item.arname }} </p>
+
+              <p class=" fs-6 fw-bold m-2" style="color:brown;" *ngIf=" item.discount == 0">{{ item.price|currency }} </p>
+              <p class=" fs-6 fw-bold m-2" style="color:brown;" *ngIf=" item.discount != 0">{{ item.priceafterdiscount|currency }} </p>
+              <p class="text-decoration-line-through fs-6 " *ngIf=" item.discount == 0">
+                {{item .price|currency }}</p>
+              <p class="text-decoration-line-through fs-6 " *ngIf=" item.discount != 0">
+                {{item.priceafterdiscount|currency }}</p>
+
+              <p class=" fs-6 fw-bold m-2">{{'quantity:'|translate}} <span class="fw-normal "> {{prdsInOrder.prdQty[i]}}
+                </span> <a href="" class="btn-link">{{'Change'|translate}} </a> </p>
+
+              <p class=" text-muted m-2  ">{{'Sold by Amazon.eg'|translate}} </p>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- =====================the end for orders======================================================== -->
+    </div>
+
+    <!-- =========================place order======================================= -->
+
+    <div class="col-12 col-md-3 leftside border border-1 ms-2 mb-5" >
+      <div>
+        <button class="btn btn-warning mt-3 mb-3 m-auto w-100" (click)="placeOrder()"
+          *ngIf="order.paymentmethod=='CashOnDelivery'">
+          {{'place order'|translate}}
+        </button>
+        <ngx-paypal [config]="payPalConfig" *ngIf="order.paymentmethod=='PayPal'">
+        </ngx-paypal>
+      </div>
+      <p class="fs-5">{{'Order Summary'|translate}}</p>
+      <div class="row leftside2 p-2">
+        <ul class="col-7 list-unstyled">
+          <li class="row d-flex justify-content-between">
+            <span class="text-start col">{{'items'|translate}}</span>
+            <span class="text-end col-2"> {{ totalPrice |currency}}</span>
+          </li>
+          <li class="row d-flex justify-content-between">
+            <span class="text-start col"> {{'Shipping & handling'|translate}} </span>
+            <span class="text-end col-2"> {{ order.shippingPrice }}</span>
+          </li>
+          <li class="row d-flex justify-content-between">
+            <span class="text-start col">{{'Promotion Applied'|translate}} </span>
+            <span class="text-end col-2 ">{{ order.taxPrice }}</span>
+          </li>
+        </ul>
+      </div>
+      <hr />
+      <div class="p-2">
+        <div class="row text-danger"  *ngIf="priceBeforeApplyCoupon==0">
+          <div class="col">
+            <h2 class="fs-4 ">{{'Order total'|translate}}</h2>
+          </div>
+          <div class="col-6 ">{{ ordertotal|currency }}</div>
+
+        </div>
+        <div class="p-2">
+          <div class="row fs-6" *ngIf="priceBeforeApplyCoupon > 0"><div class="container">
+            <p class="fs-6"><span>{{"you have been discount :"|translate}}</span>
+            <span> {{RateCoupon*100}} %</span></p></div>
+            <div class="col">
+              <h2 class="fs-6 ">{{'total Order before Coupon'|translate}}</h2>
+            </div>
+            <div class="col-6 ">{{priceBeforeApplyCoupon|currency}}</div>
+            <div class="container border-top">
+            <p class="fs-6 text-danger  "><span>{{"total Order after Coupon :"|translate}}</span>
+            <span> {{ ordertotal|currency }} </span></p></div>
+          </div>
+
+      </div>
+      <hr />
+      <div class="container m-auto text-center">
+        <button class="btn link-primary text-decoration-none  " #button (click)="ShowFromCoupon(CouponShow,button)">
+          {{"Add Coupon Code"|translate}}
+        </button>
+        <div #CouponShow class="d-none">
+          <div class="my-3 text-center">
+            <label for="coupon" class="form-label">{{"Enter Coupon Code"|translate}}</label>
+            <input type="text" class="form-control" name="name" id="coupon" #couponCode aria-describedby="helpId"
+              placeholder=" Coupon Code">
+            <!-- <small id="helpId" class="form-text text-muted d-none" #ForError>{{totalPrice}}</small> -->
+            <button class="btn btn-outline-warning my-2 d-block m-auto"
+              (click)="ApplyCoupon(couponCode.value)">
+              {{"Apply"|translate}}
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

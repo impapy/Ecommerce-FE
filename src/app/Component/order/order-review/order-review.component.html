@@ -1,0 +1,103 @@
+<div class=" m-auto container-md ">
+  <div class=" m-auto col-12 col-lg-6  col-md-8">
+    <div >
+      <p>
+        <span class="headorder"><a routerLink="/User/profile">{{"Your Account"|translate}}</a> </span>
+        <i class="bi bi-chevron-right"></i>
+        <span class="headorder"><a routerLink="/User/user-orders">{{"Your Orders"|translate}}</a></span>
+        <i class="bi bi-chevron-right"></i>
+
+        <span> <a class="cancel"> {{"order Details"|translate}} </a></span>
+      </p>
+    </div>
+    <div>
+      <div class="border border-success orderheader py-2" >
+        <i class="bi bi-check-circle-fill"></i>
+        <span>{{'order information has been update'|translate}}</span>
+      </div>
+    </div>
+
+    <p class="fs-1"><strong>{{"Order Details"|translate}}</strong></p>
+    <div>
+      <span>{{"order on 22 Dec 2021"|translate}} </span
+      ><span>{{"order #"|translate}}{{order._id}}</span>
+    </div>
+
+    <div class="row border border-1 table">
+      <div class="col-3">
+        <p><strong>{{"shipping Adress"|translate}}</strong></p>
+        <p>{{order.shippingAddress.fullName}}</p>
+        <p>{{order.shippingAddress.phone}}</p>
+        <p>{{order.shippingAddress.country}}</p>
+        <p>{{order.shippingAddress.city}}, {{order.shippingAddress.governate}}</p>
+      </div>
+      <div class="col-3">
+        <p><strong>{{"Payment Methods"|translate}}</strong></p>
+        <p>{{order.paymentmethod}}</p>
+      </div>
+      <div class="col-6">
+        <p><strong>{{"Order Summar"|translate}}y</strong></p>
+        <div class="row leftside2">
+          <ul class="col-9 list-unstyled">
+            <li class="row d-flex justify-content-between">
+              <span class="text-start col"> {{"Shipping & handling"|translate}} </span>
+              <span class="text-end col-4">{{order.shippingPrice}} </span>
+            </li>
+            <li class="row d-flex justify-content-between">
+              <span class="text-start col">{{"Promotion Applied"|translate}} </span>
+              <span class="text-end col-4">{{order.taxPrice}}</span>
+            </li>
+          </ul>
+
+          <div class="row">
+            <p class="col">{{"Order total"|translate}}</p>
+            <div class="col-4">{{order.totalPrice|currency }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border border-1 tableend" >
+      <div [hidden]="order.isDelivered" *ngIf="!order.isCancelled">
+        <p class="fs-4"><strong>{{"Attempting to cancel"|translate}} </strong></p>
+        <p>
+          {{"your order is being prepared eor shipment,we are Atempting to cancel it now"|translate}}
+        </p>
+        <p>{{"we'll e-mail you as soon as this status changes"|translate}}</p>
+      </div>
+      <div class="row" *ngFor="let item of order.orderItems">
+        <div class="col-12 col-sm-6 ">
+          <img
+          [src]="ImgURL+item.productId.imagePath[0]"
+            width="100%"
+
+          />
+        </div>
+        <div class="col-12 col-sm-6 ">
+          <a  [routerLink]="['/Product/',item.productId._id]"><p>{{item.productId.name}}</p></a>
+          <p>{{"soled by:"|translate}}amazon.eg</p>
+          <p style="color: red" *ngIf=" item.discount == 0">{{item.productId.price|currency}}</p>
+          <p style="color: red" *ngIf=" item.discount != 0">{{item.productId.priceafterdiscount|currency}}</p>
+          <!-- <span class="text-decoration-line-through fs-6 ">
+            {{item .price|currency }}</span> -->
+          <a [routerLink]="['/Product/',item.productId._id]" class="btn btn-outline-warning w-100 fonttext">Buy it again</a>
+        </div>
+
+      </div>
+      <!-- <div class="row" *ngFor="let prd of products">
+        <div class="col-2">
+          <img
+          [src]="ImgURL+prd.imagePath[0]"
+            width="70px"
+            height="100px"
+          />
+        </div>
+        <div class="col-6">
+          <a href="#"><p>{{prd.name}}</p></a>
+          <p>soled by:amazon.eg</p>
+          <p style="color: red">{{prd.price}}</p>
+          <a [routerLink]="['/Product/',prd._id]" class="btn btn-outline-warning w-100 fonttext">Buy it again</a>
+        </div>
+        <div class="col-4"></div>
+      </div> -->
+    </div>
+  </div></div>

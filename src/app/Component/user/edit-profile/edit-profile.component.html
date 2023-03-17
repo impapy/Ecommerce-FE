@@ -1,0 +1,262 @@
+<div class="container-fluid ">
+    <div class="col-12 col-md-5 mx-auto ">
+        <div class="container-fluid  px-0 py-2 ">
+            <p class="fs-7">
+                <!-- {{userName}} -->
+                <a href="" class=" btn-link text-decoration-none  hover-text-danger">{{'Your Account'|translate}} </a>
+                <i *ngIf="currentLang" [ngClass]="{
+          'bi bi-chevron-right': currentLang == 'en',
+          'bi bi-chevron-left': currentLang == 'ar'
+        }"></i>
+                <a class="text-danger text-decoration-none ">{{"Login & security"|translate}}</a>
+            </p>
+            <p class="fs-3">{{"Login & security"|translate}}</p>
+
+        </div>
+        <div class="container-fluid  ">
+            <!-- <Name > -->
+
+            <div class="col row p-3 border border-bottom-0">
+                <div class="col" *ngIf="currentLang" [ngClass]="{
+            ' text-start': currentLang == 'en',
+            ' text-end': currentLang == 'ar'
+          }">
+                    <div class="col fw-bold">
+                        {{"Name:"|translate}}
+                    </div>
+                    <div class="col">
+                        {{User.name }}
+
+
+                    </div>
+
+                </div>
+                <div class="col" *ngIf="currentLang" [ngClass]="{
+            ' text-start': currentLang == 'ar',
+            ' text-end': currentLang == 'en'
+          }">
+                    <button class="btn  btn-hover px-4" data-bs-toggle="modal" data-bs-target="#Name"
+                        data-bs-whatever="@Name">
+                        {{'Edit'|translate}}
+                    </button>
+                </div>
+                <p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_name>{{"! must this name bigger
+                    than"|translate}} </p>
+            </div>
+
+
+
+
+
+            <!-- <Email > -->
+            <div class="col row p-3  border border-bottom-0">
+                <div class="col" *ngIf="currentLang" [ngClass]="{
+            ' text-start': currentLang == 'en',
+            ' text-end': currentLang == 'ar'
+          }">
+                    <div class="col fw-bold">
+                        {{"Email:"|translate}}
+                    </div>
+                    <div class="col">
+                        {{User.email }}
+
+                    </div>
+
+                </div>
+                <div class="col" *ngIf="currentLang" [ngClass]="{
+            ' text-start': currentLang == 'ar',
+            ' text-end': currentLang == 'en'
+          }">
+                    <button class="btn  btn-hover px-4" data-bs-toggle="modal" data-bs-target="#Email">
+                        {{'Edit'|translate}}
+                    </button>
+                </div>
+                <p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_email>{{"! check your new email is
+                    maybe wrong or it be used"|translate}}
+                </p>
+            </div>
+            <!-- <Mobile Phone Number: > -->
+            <div class="col row p-3  border border-bottom-0">
+                <div class="col" *ngIf="currentLang" [ngClass]="{
+            ' text-start': currentLang == 'en',
+            ' text-end': currentLang == 'ar'
+          }">
+                    <div class="col fw-bold">
+                        {{"Mobile Phone Number:"|translate}}
+                    </div>
+                    <div class="col">
+                        {{User.phone }}
+
+                    </div>
+
+                </div>
+                <div class="col" *ngIf="currentLang" [ngClass]="{
+            ' text-start': currentLang == 'ar',
+            ' text-end': currentLang == 'en'
+          }">
+                    <button class="btn  btn-hover px-4" data-bs-toggle="modal" data-bs-target="#Phone-pop">
+
+                        {{'Edit'|translate}}
+                    </button>
+                </div>
+                <p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_phone>{{"! check your new phone is
+                    maybe wrong"|translate}}
+                </p>
+            </div>
+            <!-- <Mobile password > -->
+            <div class="col row p-3  border">
+                <div class="col" *ngIf="currentLang" [ngClass]="{
+            ' text-start': currentLang == 'en',
+            ' text-end': currentLang == 'ar'
+          }">
+                    <div class="col fw-bold">
+                        {{"Password:"|translate}}
+                    </div>
+                    <div class="col">
+                        ******
+                    </div>
+
+                </div>
+                <div class="col" *ngIf="currentLang" [ngClass]="{
+            ' text-start': currentLang == 'ar',
+            ' text-end': currentLang == 'en'
+          }">
+                    <button class="btn  btn-hover px-4" data-bs-toggle="modal" data-bs-target="#Password">
+
+                        {{'Edit'|translate}}
+                    </button>
+                </div>
+                <p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_password>{{"! check your new password
+                    is maybe wrong. To check a password between 7 to 16 characters which contain only characters,
+                    numeric digits, underscore and the first character must be a letter"|translate}}
+                </p>
+            </div>
+
+        </div>
+
+        <div class="container-fluid  py-3  mb-4">
+            <button class="btn btn-warning" (click)="changeAlldate()">
+                {{"Done"|translate}}
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!--All pop -->
+<!-- pop to name -->
+<div class="modal fade" id="Name" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"New Name"|translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">{{"Name:"|translate}}</label>
+                        <input type="text" class="form-control" #new_name maxlength="32" minlength="4" name="name"
+                            pattern="[A-Za-z]{3,32}" [value]="User.name" required>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"Cancel"|translate}}</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" #btn_name
+                    (click)="changeName(new_name.value,valid_name ,btn_name)">{{"Save"|translate}} </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- pop to email -->
+
+<div class="modal fade" id="Email" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"New Email"|translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="recipient-Email" class="col-form-label">{{"Email:"|translate}}</label>
+                        <input type="email" class="form-control" #new_Email
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [value]="User.email " required>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{"Cancel"|translate}}</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)="changeEmail(new_Email.value,valid_email)">{{"Save"|translate}} </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div><!-- pop to phone -->
+<div class="modal fade" id="Phone-pop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"New phone"|translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-phone" class="col-form-label">{{"Mobile Phone Number:"|translate}}</label>
+                        <input type="text" class="form-control" #new_phone [value]="User.phone "
+                            pattern="^01[0-2]\d{1,8}$" required>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"Cancel"|translate}}</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="changePhone(new_phone.value,valid_phone)">{{"Save"|translate}} </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- pop to password -->
+<div class="modal fade" id="Password" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    {{"New Password"|translate}}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-Password" class="col-form-label">
+                            {{"Password:"|translate}}
+                        </label>
+                        <input type="password" class="form-control" #new_Password>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"Cancel"|translate}}</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="changePassword(new_Password.value,valid_password)">{{"Save"|translate}} </button>
+            </div>
+        </div>
+    </div>
+</div>

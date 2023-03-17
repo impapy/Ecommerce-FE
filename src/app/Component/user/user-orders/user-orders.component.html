@@ -1,0 +1,90 @@
+
+
+<!-- ========================================================== -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+
+
+
+    <div class="container mt-5 mb-5">
+        <!-- URL Breadcrumb Starts -->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent ml-n3">
+            <li class="breadcrumb-item text-decoration-none"><a href="your_account.html">{{"Your Account"|translate}}</a></li>
+            <li class="breadcrumb-item"></li><li class=" active text-danger" aria-current="page">{{"Your Order"|translate}}</li>
+          </ol>
+        </nav> <!-- URL Breadcrumb Ends -->
+    
+        <!-- Search Orders Starts -->
+       
+        <div class="row">
+          <div class="col-md-4">
+            <h3>{{"Your Order"|translate}}</h3>
+          </div>
+          <div class="col-md-8">
+            
+          </div>
+        </div> <!-- Search Orders Starts --> <ul class="breadcrumb bg-transparent ml-n3">
+        <li><a (click)="reload()" class=" text-decoration-none    fs-6 order" >{{"Orders"|translate}}</a></li>
+        <li><a (click)="ViewOrder()" class=" text-decoration-none     fs-6 order ">{{"Cancelled Orders"|translate}}</a></li>
+          <li><a (click)="ViewArchivedOrders()" class=" text-decoration-none    fs-6 order">{{"Archive"|translate}}</a></li>
+        </ul>
+        
+        <hr style="margin-top: -5px;">
+        <!-- Order Card Starts -->
+        <div class="card mt-5"  *ngFor="let ord of Orders let i=index">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-4 mt-3 mt-md-0">
+                <p class="text-uppercase text-muted my-0"> {{"ORDER PLACED:"|translate}} </p>
+                <p class="text-uppercase text-muted my-0">{{ord.createdAt}}</p>
+              </div>
+    
+              <div class="col-md-4 mt-3 mt-md-0">
+                <p class="text-uppercase text-muted my-0"> {{"TOTAL:"|translate}}</p>
+                <p class="text-uppercase text-muted my-0">
+                    {{ord.totalPrice |currency  }}
+                </p>
+              </div>
+    
+              <div class="col-md-4 mt-3 mt-md-0">  <p class="text-uppercase text-muted my-0"> {{"ORDER # :"|translate}} {{ord._id}}</p>
+                <p class="text-uppercase text-muted my-0">
+                  {{"SHIP TO:"|translate}} {{ord.shippingAddress.fullName}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-body border" *ngFor="let prd of ord.orderItems ;let i=index">{{"Ordered"|translate}} : #  {{i+1}}
+            <div class="row">
+              <div class="col-md-2">
+                <img  [src]="ImgURL +prd.productId.imagePath[0]"  width="100%"  alt="product {{i+1}} image">
+              </div>
+   
+              <div class="col-md-5">
+                <a   [routerLink]="['/Product/',prd.productId._id]" class="btn link-primary text-decoration-none card-title" *ngIf="currentLang=='en'">{{prd.productId.name|slice:0:40}}....</a>
+                <a   [routerLink]="['/Product/',prd.productId._id]" class="btn link-primary text-decoration-none card-title"  *ngIf="currentLang=='ar'">{{prd.productId.arname|slice:0:40}}....</a>
+                
+                <p class="text-muted my-0 card-text" *ngIf="currentLang=='en'">{{prd.productId.description|slice:0:80}}</p>
+                <p class="text-muted my-0 card-text" *ngIf="currentLang=='ar'">{{prd.productId.ardescription|slice:0:80}}</p>
+          
+                <p class="text-uppercase my-0">
+               <small class="text-muted">{{"Price:"|translate}}   <span class="text-danger">{{prd.productId?.price |currency  }}</span></small>
+                </p>
+              </div>
+    
+              <div class="col-md-5 d-flex flex-column ">
+                <a class="btn btn-outline-secondary btn-sm w-50 ml-auto my-1 ms-auto " (click)="cancel(ord._id)" *ngIf="!ord.isCancelled" [hidden]="ord.isDelivered">{{"Cancel"|translate}}</a>
+              </div>
+            </div>
+          </div>
+          <a  class="btn btn-outline-warning btn-sm w-50 ml-auto my-2   mx-auto " [routerLink]="['/Order/review/',ord._id]" >{{"View Order details"|translate}}</a>
+
+        </div> <!-- Order Card Starts -->
+    
+        <!-- Order Card Starts -->
+       
+      </div>
+    
+
+
+

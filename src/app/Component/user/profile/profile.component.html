@@ -1,0 +1,225 @@
+
+<div class="Account container mx-auto">
+
+
+    <div class=" section mb-md-5">
+        <div class=" row ps-5 g-0 a-spacing-base">
+            <h1>
+                {{'Your Account'|translate}}
+            </h1>
+
+
+
+        </div>
+
+
+        <div class="row row-cols-md-2 row-cols-sm-2 row-cols-xs-1 g-2 px-md-5">
+
+            <div class="col d-flex justify-content-center  align-items-stretch">
+                <div class=" card d-flex justify-content-center  align-items-stretch" style="width:20rem;height: 7rem;">
+
+                    <a routerLink="/User/user-orders" class=" card-a">
+                        <div data-card-identifier="YourOrders" class=" a-box ya-card--rich">
+                            <div class=" a-box-inner">
+                                <div class=" row g-0">
+                                    <div class=" col-3">
+                                        <img class=" img-fluid ms-3 rounded-start" alt="Your Orders"
+                                            src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/order._CB660668735_.png">
+                                    </div>
+                                    <div class=" col-9  card-body">
+                                        <h2 class="fs-6 card-title">
+                                            {{'Your Orders'|translate}}
+                                        </h2>
+                                        <div><span class=" card-text">{{'Track, return, or buy things again'|translate}}</span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center  align-items-stretch">
+                <div class=" card d-flex justify-content-center  align-items-stretch" style="width:20rem;height: 7rem;">
+
+                    <a [routerLink]="['/User/edit-profile']" routerLinkActive="router-link-active"  class=" card-a">
+                        <div data-card-identifier="SignInAndSecurity" class=" a-box ya-card--rich">
+                            <div class=" a-box-inner">
+                                <div class=" row g-0">
+                                    <div class=" col-3">
+                                        <img class=" img-fluid ms-3 rounded-start" alt="Login &amp; security"
+                                            src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/security._CB659600413_.png">
+                                    </div>
+                                    <div class=" col-9  card-body">
+                                        <h2 class="fs-6 card-title">
+                                            {{'Login &amp; security'|translate}}
+                                        </h2>
+                                        <div><span class=" card-text">{{"Edit login, name, and mobile number"|translate}}</span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                </div>
+            </div>
+          
+    
+            <!-- <div class="col d-flex justify-content-center  align-items-stretch">
+                <div class=" card d-flex justify-content-center  align-items-stretch" style="width:20rem;height: 7rem;">
+
+                    <a href="#" class=" card-a">
+                        <div data-card-identifier="GiftCards" class=" a-box ya-card--rich">
+                            <div class=" a-box-inner">
+                                <div class=" row g-0">
+                                    <div class=" col-3">
+                                        <img class=" img-fluid ms-3 rounded-start" alt="Gift cards"
+                                            src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/cs/contact-us/GiftCard_icon_01._CB660349069_.png">
+                                    </div>
+                                    <div class=" col-9  card-body">
+                                        <h2 class="fs-6 card-title">
+                                            {{"Gift cards"|translate}}
+                                        </h2>
+                                        <div><span class=" card-text">{{'View balance, redeem, or reload cards'|translate}}</span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                </div>
+            </div> -->
+            <!-- <div class="col d-flex justify-content-center  align-items-stretch">
+                <div class=" card d-flex justify-content-center  align-items-stretch" style="width:20rem;height: 7rem;">
+
+                    <a href="#" class=" card-a">
+                        <div data-card-identifier="PaymentOptions" class=" a-box ya-card--rich">
+                            <div class=" a-box-inner">
+                                <div class=" row g-0">
+                                    <div class=" col-3">
+                                        <img class=" img-fluid ms-3 rounded-start" alt="Your Payments"
+                                            src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/payment._CB660668735_.png">
+                                    </div>
+                                    <div class=" col-9  card-body">
+                                        <h2 class="fs-6 card-title">
+                                            {{'Your Payments'|translate}}
+                                        </h2>
+                                        <div><span class=" card-text">{{'Manage payment methods and settings, view all transactions'|translate}}</span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                </div>
+            </div> -->
+            
+            
+            
+            <div class="col d-flex justify-content-center  align-items-stretch">
+                <div class=" card d-flex justify-content-center  align-items-stretch" style="width:20rem;height: 7rem;">
+
+                    <a routerLink="/User/user-address" class=" card-a">
+                        <div data-card-identifier="YourProfiles" class=" a-box ya-card--rich">
+                            <div class=" a-box-inner">
+                                <div class=" row g-0">
+                                    <div class=" col-3">
+                                        <img class=" img-fluid ms-3 rounded-start" alt="Your Profiles"
+                                            src="https://images-na.ssl-images-amazon.com/images/G/42/x-locale/cs/help/images/gateway/self-service/YA_icon_address_01._CB657836742_.png">
+                                    </div>
+                                    <div class=" col-9  card-body">
+                                        <h2 class="fs-6 card-title">
+                                            {{'Your Addresses'|translate}}
+                                        </h2>
+                                        <div><span class=" card-text">
+                                           {{'Edit addresses for orders'|translate}} </span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col d-flex justify-content-center  align-items-stretch">
+                <div class=" card d-flex justify-content-center  align-items-stretch" style="width:20rem;height: 7rem;">
+
+                    <a routerLink="/Wishlist" class=" card-a">
+                        <div data-card-identifier="YourLists" class=" a-box ya-card--rich">
+                            <div class=" a-box-inner">
+                                <div class=" row g-0">
+                                    <div class=" col-3">
+                                        <img class=" img-fluid ms-3 rounded-start" alt="Your Lists"
+                                            src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/11_lists._CB654640573_.png">
+                                    </div>
+                                    <div class=" col-9  card-body">
+                                        <h2 class="fs-6 card-title">
+                                            {{'Your Lists'|translate}}
+                                        </h2>
+                                        <div><span class=" card-text">{{'View, modify, and share your lists, or create new ones'|translate}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <hr class="my-5">
+
+
+    <div class="col-12 mt-md-5 d-flex  overflow-hidden" id="content">
+
+
+        <div class=" text-center inner2 mt-3 mx-5" *ngFor="let itemsexrandom of randometenProduct ; index as i"
+          style="width:150px ; " tabindex="0" role="button">
+          <div *ngIf="i < 6">
+            <div class="text-center w-100 h-50"><img [src]="ImgURL+itemsexrandom.imagePath[0]"
+                class=" rounded m-auto " height="100"></div>
+            <div  style="width:150px ; " class="text-center w-100">
+              <div  style="width:150px ; "  class="fonttextbig h-50">{{itemsexrandom.name | slice:0:10}}{{itemsexrandom.arname | slice:0:10}} ...
+              </div>
+
+              <div  class="text-center w-100" *ngIf=" itemsexrandom.discount == 0">{{itemsexrandom.price |currency }}</div>
+              <div  class="text-center w-100" *ngIf=" itemsexrandom.discount != 0">
+                <span>{{itemsexrandom.priceafterdiscount |currency }}
+                </span>
+                <span class="text-decoration-line-through fs-6 ">
+                  {{itemsexrandom .price|currency }}</span>
+              </div>
+              <div>
+                <button (click)="onAddCard( itemsexrandom )" type="button" class="btn btn-outline-warning btn-sm mt-auto bottom-0 "
+                 >{{'add to card'|translate}}</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

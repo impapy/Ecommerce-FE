@@ -1,0 +1,196 @@
+<div class="container-fluid m-0 ">
+  <div *ngIf="currentLang =='en'">
+    <h1>{{category.name}}</h1>
+    <p style="text-align: center;">{{category.name}} {{"11.11 Deals"|translate}}</p>
+    <p style="text-align: center;"> {{"Scroll down & see them all"|translate}}  🔽 </p>
+    <img [src]="imageUrl+category.image" class="w-100 mb-3" />
+    <div class="row gx-3 justify-content-center ">
+      <div *ngFor=" let i of category.subCategories " class="col-4 m-auto">
+        <div>
+          <a [routerLink]="[ '/Product/products-subcategory/', i.name] ">
+            <img [src]="imageUrl+i.image[0]" class="img-responsive w-100" />
+          </a>
+        </div>
+        <div>
+          <h4 class="text-center">{{i.name}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="currentLang =='ar'">
+    <h1>{{category.arName}}</h1>
+    <p style="text-align: center;">{{category.arName}} {{"11.11 Deals"|translate}}</p>
+    <p style="text-align: center;"> {{"Scroll down & see them all"|translate}} 🔽 </p>
+    <img [src]="imageUrl+category.image" class="w-100 mb-3" />
+    <div class="row gx-3 justify-content-center ">
+      <div *ngFor=" let i of category.subCategories" class="col-4 m-auto">
+        <div>
+          <a [routerLink]="[ '/Product/products-subcategory/', i.arName] "><img [src]="imageUrl+i.image "
+              class="img-responsive w-100" /></a>
+        </div>
+        <div>
+          <h4 class="text-center">{{i.arName}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-5">
+    <div class="row gx-3 justify-content-center">
+      <div class="card col-12 col-sm-6 col-md-4 col-lg-3 p-1 border   smth" 
+        *ngFor="let item of Products | paginate: { itemsPerPage: 12, currentPage: page }  ;  index as i">
+        <div class="hover-to-show-btn position-relative text-center"><div class="For_Img text-center"> <img [src]="imageUrl+item.imagePath[0]" class=" card-img-top img-card"
+            style="margin:  auto;" alt="..."></div>
+
+
+            <span class="position-absolute top-0 start-0 translate-middle badge rounded-3 bg-warning  text-black fw-lighter" *ngIf="item.discount != 0">
+              {{"Sale"|translate}} {{item.discount}}%
+               <span class="visually-hidden">unread messages</span>
+             </span>
+
+          <!-- ==============================btn pop================================== -->
+          <button type="button" class=" btn  btn-light border-1 border show-btn position-absolute  mx-auto  w-50" data-bs-toggle="modal"
+            data-bs-target="#exampleModalCenter" data-bs-whatever="pop product" (click)=showpop(i)>
+            {{"Quick look"|translate}}
+          </button>
+
+          <!----============model pop========================= -->
+
+
+          <div class="modal fade m-auto vw-100 justify-content-center" id="exampleModalCenter" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg p-5 m-auto">
+              <div class="modal-content">
+                <div class="modal-header ps-2 pe-2 pb-3 bg-light">
+
+                  <button type="button " class="btn-close mt-0 me-2" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <img [src]="imageUrl+Products[num].imagePath[0]" class=" img w-50" alt="...">
+                    </div>
+                    <div class="col">
+                      <h5 class="title "> {{Products[num].brand }}</h5>
+                      <h5 class="title" *ngIf="currentLang =='ar'"> {{Products[num].arname }}</h5>
+                      <h5 class="title" *ngIf="currentLang =='en'"> {{Products[num].name }}</h5>
+                      <p class="text-start fs-6 p-0 m-0 " *ngIf=" Products[num].discount != 0"><span class="fs-5">
+                        <span class=""> {{Products[num].priceafterdiscount|currency}}</span>
+                        <span class="text-decoration-line-through fs-6 "> {{Products[num].price|currency}}</span>
+                     </span>
+
+                    </p>
+                      <p class="text-start fs-6 p-0 m-0 "  *ngIf=" Products[num].discount == 0"> <span class="fs-5">
+                        {{Products[num].price|currency}}</span>
+
+                    </p>
+                      <!-- ================================================== -->
+                      <p class="fs-5">
+
+                        {{ Products[num].ratings }} {{'out of 5'|translate}}
+                        <!-- ==============================================Review  ======================================================== -->
+
+                        <span class="col p-3">
+                          <span class="fs-5">  {{'Rating :'|translate}}  </span>
+                          <i [ngClass]="{
+                'star-rating bi bi-star': Products[num].ratings < 1,
+                'star-rating bi bi-star-fill': Products[num].ratings >= 1
+              }" aria-hidden="true"></i>
+                          <i [ngClass]="{
+                'star-rating bi bi-star': Products[num].ratings < 2,
+                'star-rating bi bi-star-fill': Products[num].ratings >= 2
+              }" aria-hidden="true"></i>
+                          <i [ngClass]="{
+                'star-rating bi bi-star': Products[num].ratings < 3,
+                'star-rating bi bi-star-fill': Products[num].ratings >= 3
+              }" aria-hidden="true"></i>
+                          <i [ngClass]="{
+                'star-rating bi bi-star': Products[num].ratings < 4,
+                'star-rating bi bi-star-fill': Products[num].ratings >= 4
+              }" aria-hidden="true"></i>
+                          <i [ngClass]="{
+                'star-rating bi bi-star': Products[num].ratings < 5,
+                'star-rating bi bi-star-fill': Products[num].ratings >= 5
+              }" aria-hidden="true"></i>{{ Products[num].numReviews}}
+                        </span>
+                      </p> <!-- =============================== Product Details ========================= -->
+                      <button class="btn btn-warning w-100 m-auto p-2" [routerLink]="['/Product/',Products[num]._id]"
+                      data-bs-dismiss="modal" routerLinkActive="router-link-active">{{'See Product Details'|translate}} </button>
+                      <!-- ======================================================== -->
+
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="ps-3 pe-3 p-2 m-3 rounded-3 btn btn-light" data-bs-dismiss="modal">
+                    {{"Cancel"|translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ======================= -->
+
+
+          <!-- ======================= -->
+
+          <div class="card-body text-start">
+            <h5 class="card-title overflow-hidden fs-6 m-0 p-0" *ngIf="currentLang =='ar'"> {{item.arname | slice:0:30}}....</h5>
+            <h5 class="card-title overflow-hidden fs-6 m-0 p-0" *ngIf="currentLang =='en'"> {{item.name | slice:0:30}}....</h5>
+
+            <p class="fs-6 text-start p-0 m-0">
+
+
+              <!-- ==============================================Review  ======================================================== -->
+
+              <span class="col  text-start">
+
+                <i [ngClass]="{
+              'star-rating bi bi-star': Products[i].ratings < 1,
+              'star-rating bi bi-star-fill': Products[i].ratings >= 1
+            }" aria-hidden="true"></i>
+                <i [ngClass]="{
+              'star-rating bi bi-star': Products[i].ratings < 2,
+              'star-rating bi bi-star-fill': Products[i].ratings >= 2
+            }" aria-hidden="true"></i>
+                <i [ngClass]="{
+              'star-rating bi bi-star': Products[i].ratings < 3,
+              'star-rating bi bi-star-fill': Products[i].ratings >= 3
+            }" aria-hidden="true"></i>
+                <i [ngClass]="{
+              'star-rating bi bi-star': Products[i].ratings < 4,
+              'star-rating bi bi-star-fill': Products[i].ratings >= 4
+            }" aria-hidden="true"></i>
+                <i [ngClass]="{
+              'star-rating bi bi-star': Products[i].ratings < 5,
+              'star-rating bi bi-star-fill': Products[i].ratings >= 5
+            }" aria-hidden="true"></i>
+              </span> {{ Products[i].numReviews }}
+            </p>
+            <p class="text-start fs-6 p-0 m-0 " *ngIf=" item.discount != 0"><span class="fs-5">
+                <span class=""> {{item.priceafterdiscount|currency}}</span>
+                <span class="text-decoration-line-through fs-6 ">
+                  {{item.price|currency}}</span>
+              </span>
+
+            </p>
+            <p class="text-start fs-6 p-0 m-0 " *ngIf=" item.discount == 0"> <span class="fs-5">
+                {{item.price|currency}}</span>
+
+            </p>
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+      </div>
+    </div>
+  </div>
+</div>
+<pagination-controls (pageChange)="page = $event" class="text-center "></pagination-controls>

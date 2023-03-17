@@ -1,0 +1,29 @@
+.headorder {
+    color: blue;
+  }
+  .cancel {
+    color: coral;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  .bi-check-circle-fill {
+    color: rgb(0, 128, 49);
+    font-size: 1rem;
+  }
+  .orderheader {
+    color: rgb(0, 128, 49);
+    // padding: 15px 300px 10px 20px;
+    /* margin: 50px; */
+
+    border-radius: 5px solid green;
+    box-shadow: 10px 0px inset;
+  }
+  .table {
+    font-size: 0.7rem;
+    padding: 10px;
+  }
+  .tableend {
+    padding: 5px;
+  }

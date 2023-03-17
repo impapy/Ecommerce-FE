@@ -1,0 +1,143 @@
+<footer class="text-center text-white" style="background-color: #232f3e"
+  *ngIf="router.url !== '/User/login' && router.url !== '/User/signup' && router.url !== '/Payment'">
+  <div class="d-grid pd-4">
+    <!-- <button class="btn btn-dark f-btn-bg" href="#" type="button"> -->
+    <button (click)="action()" class="btn fs-6 f-btn-bg"> {{"Back to top"|translate}}</button>
+    <!-- </button> -->
+  </div>
+  <div class="container text-md-left mb-5 px-md-5 m-auto">
+    <div class="row text-center text-md-left px-md-5 m-auto">
+      <div class="col-md-6 col-lg-3  col-sm-6 mx-auto mt-3 text-start">
+        <h5 class="mb-2 fw-bold fs-6">{{"Get to Know Us"|translate}}</h5>
+        <p>
+          <a class="text-decoration-none color-white" href="#">{{"Careers"|translate}}</a>
+        </p>
+        <p><a class="text-decoration-none color-white" href="#">{{"Blog"|translate}}</a></p>
+        <p>
+          <a class="text-decoration-none color-white" href="#">{{"About Amazon"|translate}}</a>
+        </p>
+      </div>
+
+      <div class="col-md-6 col-lg-3 col-md-4 col-sm-6 mx-auto mt-3 text-start">
+        <h5 class="mb-2 fw-bold fs-6 text-white">{{"Show with Us"|translate}}</h5>
+        <p>
+          <a class="text-decoration-none color-white" href="">{{"Your Account"|translate}}</a>
+        </p>
+        <p>
+          <a class="text-decoration-none color-white" href="">{{"Your Order"|translate}}</a>
+        </p>
+        <p>
+          <a class="text-decoration-none color-white" href="">{{"Your Addresses"|translate}}</a>
+        </p>
+        <p>
+          <a class="text-decoration-none color-white" href="">{{"Your Lists"|translate}}</a>
+        </p>
+      </div>
+      <div class="col-md-6 col-lg-3 col-md-4 col-sm-6 mx-auto mt-3 text-start">
+        <h5 class="mb-2 fw-bold fs-6 text-white">{{"Make Money with Us"|translate}}</h5>
+        <p>
+          <a class="text-decoration-none color-white" href="">{{"Sell on Amazon"|translate}}</a>
+        </p>
+        <p>
+          <a class="text-decoration-none color-white" href="">{{"Fulfillment by Amazon"|translate}}</a>
+        </p>
+      </div>
+      <div class="col-md-6 col-lg-3 col-md-4 col-sm-6 mx-auto mt-3 text-start">
+        <h5 class="mb-2 fw-bold fs-6 text-white">{{"Let Us Help You"|translate}}</h5>
+        <p><a class="text-decoration-none color-white" href="">{{"Help"|translate}}</a></p>
+        <p>
+          <a class="text-decoration-none color-white" href="">{{"Shipping & Delivery"|translate}}</a>
+        </p>
+        <p>
+          <a class="text-decoration-none color-white" href="">{{"Returns & Replacements"|translate}}</a>
+        </p>
+        <p>
+          <a class="text-decoration-none color-white" href="">{{"Amazon App Download"|translate}}
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- footer line started -->
+  <div class="nav-footer-line d-flex justify-content-center align-content-center pt-md-5">
+      <div class="d-flex justify-content-center align-content-center ">
+   <div class=" dropdown  text-white  text-center mx-md-3 border my-auto d-flex m-auto">
+      <span class=" btn dropdown-toggle text-white mt-2" role="button" id="dropdown10" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <span class="  "> </span> &nbsp;{{currentLang}}
+        <img [src]="'./../../../assets/'+currentLang+'.png'" alt="lang" width="30px" srcset=""> </span>
+      <div class=" dropdown-menu w-auto" aria-labelledby="dropdown10">
+        <button (click)="changeCurrentLang('en')" class=" dropdown-item  w-auto"><img [src]="'./../../../assets/en.png'"
+            alt="lang" width="30px" srcset="">English</button>
+        <button (click)="changeCurrentLang('ar')" class=" dropdown-item w-auto"><img [src]="'./../../../assets/ar.png'"
+            alt="lang" width="30px" srcset=""> Arabic</button>
+      </div>
+    </div>
+    <img src="../../../assets/Amazon Logo.png" width="100px" alt=""  class="text-center my-auto me-auto" srcset="">
+  </div></div>
+  <!-- footer line ended -->
+ 
+
+  <div class="
+        navFooterLine
+        navFooterDescLine
+        navFooterLinkLine
+        navFooterDescLine
+        small-text 
+        d-none 
+        d-lg-block 
+        d-xl-block
+      " role="navigation" aria-lable="More on Amazon.com">
+    <div class="container" style="background: #131a22">
+      <table class="navFooterMoreOnAmazon" cellspacing="0">    
+
+
+        <tbody><tr>
+            <td class="navFooterDescItem"><a href="" class="nav_a text-decoration-none text-white">{{"Sell on Amazon.ae"|translate}}<br><span class="small text-muted ">{{"Sell globally, start with"|translate}}{{ "UAE"|translate}}</span></a></td><td  style="width: 5%"></td>
+            <td class="navFooterDescItem"><a href="" class="nav_a text-decoration-none text-white">{{"Sell on Amazon.sa"|translate}}<br><span class="small text-muted ">{{"Sell globally,"|translate}} {{"start with Saudi Arabia"|translate}}</span></a></td><td  style="width: 5%"></td>
+            <td class="navFooterDescItem"><a href="" class="nav_a text-decoration-none text-white">{{"Amazon Web Services"|translate}}<br><span class="small text-muted ">{{"Scalable Cloud"|translate}}<br>{{"Computing Services"|translate}}</span></a></td><td  style="width: 5%"></td>
+            <td class="navFooterDescItem"><a href="" class="nav_a text-decoration-none text-white">{{"Goodreads"|translate}}<br><span class="small text-muted ">{{"Book reviews"|translate}}<br>{{"& recommendations"|translate}}</span></a></td><td  style="width: 5%"></td>
+            <td class="navFooterDescItem"><a href="" class="nav_a text-decoration-none text-white">{{"Audible"|translate}}<br><span class="small text-muted ">{{"Download"|translate}}<br>{{"Audio Books"|translate}}</span></a></td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+            <td class="navFooterDescItem"><a href="" class="nav_a text-decoration-none text-white">IMDb<br><span class="small text-muted ">{{"Movies, TV"|translate}}<br>{{"&amp; Celebrities"|translate}}</span></a></td><td  style="width: 5%"></td>
+            <td class="navFooterDescItem"><a href="" class="nav_a text-decoration-none text-white">Alexa<br><span class="small text-muted ">{{"Actionable Analytics"|translate}}<br>{{"for the Web"|translate}}</span></a></td><td  style="width: 5%"></td>
+            <td class="navFooterDescItem"><a href="" class="nav_a text-decoration-none text-white">Book Depository<br><span class="small text-muted ">{{"Books With Free"|translate}}<br>{{"Delivery Worldwide"|translate}}</span></a></td><td  style="width: 5%"></td>
+            <td class="navFooterDescItem"><a href="" class="nav_a text-decoration-none text-white">Shopbop<br><span class="small text-muted ">{{"Designer"|translate}}<br>{{"Fashion Brands"|translate}}</span></a></td><td  style="width: 5%"></td>
+            <td class="navFooterDescItem">&nbsp;</td>
+            </tr>
+            
+                </tbody>
+
+
+
+
+
+
+
+    </table>
+    </div>
+  </div>
+
+  <!-- footer links ended -->
+
+  <!-- Copy right -->
+  <div class="text-center p3" style="background-color: #202124">
+    <ul class="small-text-m d-inline-block" style="list-style: none">
+      <li class="mx-3 d-inline">
+        <a href="/gp/help/customer/display.html?nodeId=508088&amp;ref_=footer_cou" style="color: white">Conditions of
+          Use</a>
+      </li>
+      <li class="mx-3 d-inline">
+        <a href="/gp/help/customer/display.html?nodeId=468496&amp;ref_=footer_privacy" style="color: white">Privacy
+          Notice</a>
+      </li>
+      <li class="mx-3 d-inline">
+        <a href="/interestbasedads/ref=footer_iba" style="color: white">Interest-Based Ads</a>
+      </li>
+    </ul>
+    <span class="small-text-m">
+      © 1996-2021, Amazon.com, Inc. or its affiliates
+    </span>
+  </div>
+</footer>

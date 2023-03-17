@@ -1,0 +1,102 @@
+// $background:#e7e7e7;
+// $display:flex;
+// $font-size: small;
+
+
+// @mixin import-text {
+//     background-color: #ddd;
+    
+// }
+// #container{
+//     padding: 0 100px;
+// }
+//  .Phone{
+//      display: $display;
+  
+//  }
+//  .why{
+//      color: rgb(100, 100, 163);
+     
+//  }
+//  .state{
+//      display: $display;
+    
+    
+
+//  }
+// .state1{
+//     border: 0.9px gainsboro solid;
+    
+// }
+
+//  form{
+//      font-size:$font-size;
+//  }
+//  .form-select{
+
+// background-color: $background;
+//  }
+//  .footer{
+    
+//      padding: 0 350px;
+   
+//    font-size: $font-size;
+//  }
+
+
+//  .btn{
+    
+//     background-color: #f0c14b; 
+//      border-radius: 5px;
+     
+         
+// }
+
+
+// .a-form-label {
+// display: block;
+// padding-left: 2px;
+// padding-bottom: 2px;
+// font-weight: 700;
+// }
+// .a-native-dropdown{
+// padding:12px;
+// margin: 9px 0;
+
+// background-color:$background;
+
+// }
+// .a-native-dropdown:hover{
+//     @include import-text;
+
+// }
+// .country{
+// resize: none;
+// background-color:$background; 
+
+
+// }
+// .country:hover{
+//     @include import-text;
+// }
+// .container:hover{
+// @include import-text;
+
+// }
+
+
+a{
+    text-decoration: none;
+}
+a:hover{
+    color: red;
+}
+.ng-valid:not(form) {
+    border-left: 5px solid #42A948;
+    /* green */
+  }
+  
+  .ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+  }

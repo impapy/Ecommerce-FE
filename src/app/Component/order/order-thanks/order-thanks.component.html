@@ -1,0 +1,44 @@
+<div class="">
+    <div class="ordermain">
+        <div>
+            <i class="bi bi-check-circle-fill"></i>
+            <span class="orderheader">order placed,thanks!</span>
+            <p>Confirmation Will be sent to your email.</p>
+            <p>
+                <strong>Being delivered to {{order.shippingAddress.fullName}} ,{{order.shippingAddress.phone}}</strong>
+                {{order.shippingAddress.city}},{{order.shippingAddress.governate}}
+
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <hr>
+                <p class="orderheader">{{today}}</p>
+                <p>Estimated delivery</p>
+            </div>
+            <div class="col-2" *ngFor="let prd of products">
+                <hr>
+                <img [src]="ImgURL+prd.imagePath[0]" width="50px" height="50px" />
+            </div>
+            <div class="col-8"></div>
+        </div>
+        <div>
+            <a href="#">
+
+                <p style="color: blue">
+                    <a [routerLink]="['/Order/review/',orderId]">Rewiew or edit your recent orders</a>
+                    <i class="bi bi-chevron-right"></i>
+                </p>
+            </a>
+
+        </div>
+
+    </div>
+    <div>
+        <div class="d-grid gap-2 col-2 mx-auto mb-5">
+            <button class="btn btn-warning" type="button" routerLink="/Home">Continue shopping</button>
+
+        </div>
+    </div>
+</div>
